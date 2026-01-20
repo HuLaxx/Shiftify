@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { ButtonHTMLAttributes } from "react";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -18,28 +17,23 @@ export default function Button({
     ...props
 }: ButtonProps) {
 
-    const baseStyles = "relative inline-flex items-center justify-center font-display font-medium rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background disabled:opacity-50 disabled:pointer-events-none";
+    const baseStyles = "relative inline-flex items-center justify-center rounded-full font-sans font-semibold tracking-[0.02em] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:opacity-50 disabled:pointer-events-none";
 
     const variants = {
-        primary: "bg-primary text-white hover:bg-primary/90 shadow-[0_0_20px_rgba(112,0,255,0.3)] hover:shadow-[0_0_30px_rgba(112,0,255,0.5)] border border-primary/20",
-        secondary: "bg-secondary text-black hover:bg-secondary/90 shadow-[0_0_20px_rgba(0,240,255,0.3)] hover:shadow-[0_0_30px_rgba(0,240,255,0.5)]",
-        outline: "border border-white/20 hover:bg-white/5 text-white backdrop-blur-sm",
-        ghost: "hover:bg-white/5 text-white/80 hover:text-white",
+        primary: "bg-primary text-primary-foreground shadow-sm shadow-black/10 hover:bg-primary/90 hover:shadow-md hover:shadow-black/15",
+        secondary: "bg-foreground text-background hover:bg-foreground/90",
+        outline: "border border-foreground/20 text-foreground hover:bg-foreground/5",
+        ghost: "text-foreground/70 hover:text-foreground hover:bg-foreground/5",
     };
 
     const sizes = {
-        sm: "px-4 py-2 text-sm",
-        md: "px-6 py-3 text-base",
-        lg: "px-8 py-4 text-lg",
+        sm: "px-4 py-2 text-xs",
+        md: "px-6 py-3 text-sm",
+        lg: "px-8 py-4 text-base",
     };
 
     return (
-        <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
-            {...props}
-        >
+        <button className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`} {...props}>
             {isLoading && (
                 <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
@@ -47,6 +41,6 @@ export default function Button({
                 </svg>
             )}
             {children}
-        </motion.button>
+        </button>
     );
 }

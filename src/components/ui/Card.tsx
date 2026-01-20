@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { HTMLAttributes } from "react";
 
 interface CardProps extends HTMLAttributes<HTMLDivElement> {
@@ -8,15 +7,13 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export default function Card({ children, className = "", hoverEffect = true, ...props }: CardProps) {
+    const hoverStyles = hoverEffect
+        ? "transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(22,19,15,0.16)]"
+        : "";
+
     return (
-        <motion.div
-            initial={hoverEffect ? { y: 0 } : undefined}
-            whileHover={hoverEffect ? { y: -5, boxShadow: "0 20px 40px rgba(0,0,0,0.4)" } : undefined}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className={`glass-card rounded-2xl p-6 ${className}`}
-            {...props}
-        >
+        <div className={`glass-card rounded-3xl p-6 ${hoverStyles} ${className}`} {...props}>
             {children}
-        </motion.div>
+        </div>
     );
 }

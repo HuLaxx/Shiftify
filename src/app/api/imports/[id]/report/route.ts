@@ -14,8 +14,9 @@ const escapeCsv = (value: string | number | null) => {
 
 export async function GET(
   _req: Request,
-  { params }: { params: { id: string } },
+  context: { params: Promise<{ id: string }> },
 ) {
+  const params = await context.params;
   const db = getDb();
   const rows = db
     .prepare(

@@ -10,7 +10,9 @@ const spaceGrotesk = Space_Grotesk({
 });
 const merienda = Merienda({
   subsets: ["latin"],
-  variable: "--font-merienda",
+  weight: ["400", "600"],
+  variable: "--font-script",
+  display: "swap",
 });
 
 export const metadata: Metadata = {

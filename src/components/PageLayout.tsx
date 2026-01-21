@@ -42,10 +42,10 @@ export default function PageLayout({
                 </div>
             )}
 
-            {/* Floating Capsule Header */}
+            {/* Floating Capsule Header - Refined Design */}
             <header className="fixed top-6 left-0 right-0 z-50 px-6 pointer-events-none">
-                <div className="max-w-4xl mx-auto">
-                    <nav className="pointer-events-auto flex items-center justify-between p-2 pl-4 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 shadow-lg shadow-black/10 transition-all duration-300 hover:bg-white/10 hover:border-white/20">
+                <div className="max-w-3xl mx-auto">
+                    <nav className="pointer-events-auto flex items-center justify-between p-2 pl-4 pr-2 rounded-full bg-black/40 backdrop-blur-xl border border-white/10 shadow-2xl shadow-black/20 ring-1 ring-white/5 transition-all duration-300 hover:bg-black/50 hover:border-white/20 hover:ring-white/10">
                         <AnimatedLogo size="sm" />
 
                         {/* Desktop Navigation */}
@@ -74,16 +74,16 @@ export default function PageLayout({
                         <Link
                             href="https://github.com/HuLaxx/Shiftify"
                             target="_blank"
-                            className="px-4 py-2 text-sm font-medium text-white bg-primary rounded-full hover:bg-blue-600 transition-all shadow-lg shadow-primary/20 flex items-center gap-2"
+                            className="px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-blue-500 rounded-full hover:from-blue-500 hover:to-blue-400 transition-all shadow-lg shadow-blue-500/20 flex items-center gap-2 group"
                         >
-                            <Github className="w-4 h-4" />
+                            <Github className="w-4 h-4 group-hover:rotate-12 transition-transform" />
                             <span className="hidden sm:inline">Star</span>
                         </Link>
                     </nav>
                 </div>
             </header>
 
-            {/* Main Content - Added padding top for floating header */}
+            {/* Main Content */}
             <main className="relative z-10 flex-1 px-6 lg:px-12 pt-32 pb-20">
                 <div className="max-w-7xl mx-auto">
                     {children}
@@ -91,55 +91,46 @@ export default function PageLayout({
             </main>
 
             {/* Spacious Footer */}
-            <footer className="relative z-10 mt-auto border-t border-white/5 bg-black/20 backdrop-blur-lg">
-                <div className="px-6 lg:px-12 py-16">
-                    <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
+            <footer className="relative z-10 mt-auto border-t border-white/5 bg-black/40 backdrop-blur-2xl">
+                <div className="px-6 lg:px-12 py-20">
+                    <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 lg:gap-24">
 
                         {/* Brand Column */}
                         <div className="md:col-span-2 space-y-6">
                             <AnimatedLogo size="md" />
-                            <p className="text-muted-foreground max-w-sm leading-relaxed">
+                            <p className="text-muted-foreground max-w-sm leading-relaxed text-sm">
                                 Seamlessly transfer your music library between platforms with a privacy-first, cookie-based approach. Designed for power users who value their data.
                             </p>
-                            <div className="flex gap-4">
-                                <a href="#" className="p-2 rounded-full bg-white/5 hover:bg-white/10 text-muted-foreground hover:text-white transition-colors">
-                                    <Github className="w-5 h-5" />
-                                </a>
-                                <a href="#" className="p-2 rounded-full bg-white/5 hover:bg-white/10 text-muted-foreground hover:text-white transition-colors">
-                                    <Twitter className="w-5 h-5" />
-                                </a>
-                            </div>
                         </div>
 
-                        {/* Links Column */}
+                        {/* Column: Pages */}
                         <div>
-                            <h3 className="font-display font-semibold text-lg mb-6 text-white">Product</h3>
+                            <h3 className="font-display font-bold text-sm uppercase tracking-wider text-white mb-6">Pages</h3>
                             <ul className="space-y-4 text-sm text-muted-foreground">
-                                <li><Link href="/transfer" className="hover:text-primary transition-colors">Transfer Music</Link></li>
-                                <li><Link href="/import" className="hover:text-primary transition-colors">Import Playlist</Link></li>
-                                <li><Link href="/review" className="hover:text-primary transition-colors">Review Queue</Link></li>
-                                <li><Link href="/runs" className="hover:text-primary transition-colors">Run History</Link></li>
+                                <li><Link href="/transfer" className="hover:text-fuchsia-400 transition-colors">Transfer Music</Link></li>
+                                <li><Link href="/import" className="hover:text-fuchsia-400 transition-colors">Import Playlist</Link></li>
+                                <li><Link href="/review" className="hover:text-fuchsia-400 transition-colors">Review Queue</Link></li>
+                                <li><Link href="/runs" className="hover:text-fuchsia-400 transition-colors">Run History</Link></li>
                             </ul>
                         </div>
 
-                        {/* Legal/Info Column */}
+                        {/* Column: Connect */}
                         <div>
-                            <h3 className="font-display font-semibold text-lg mb-6 text-white">Resources</h3>
+                            <h3 className="font-display font-bold text-sm uppercase tracking-wider text-white mb-6">Connect</h3>
                             <ul className="space-y-4 text-sm text-muted-foreground">
-                                <li><Link href="#" className="hover:text-primary transition-colors">Documentation</Link></li>
-                                <li><Link href="#" className="hover:text-primary transition-colors">Privacy Guide</Link></li>
-                                <li><Link href="#" className="hover:text-primary transition-colors">Terms of Service</Link></li>
-                                <li><Link href="https://github.com/HuLaxx/Shiftify" className="hover:text-primary transition-colors">Source Code</Link></li>
+                                <li><Link href="https://github.com/HuLaxx/Shiftify" target="_blank" className="hover:text-blue-400 transition-colors flex items-center gap-2"><Github className="w-4 h-4" /> GitHub</Link></li>
+                                <li><Link href="#" className="hover:text-blue-400 transition-colors flex items-center gap-2"><Twitter className="w-4 h-4" /> Twitter</Link></li>
+                                <li><Link href="#" className="hover:text-blue-400 transition-colors">Contact Support</Link></li>
                             </ul>
                         </div>
                     </div>
 
-                    <div className="max-w-7xl mx-auto pt-12 mt-12 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
-                        <p>© {new Date().getFullYear()} Shiftify. Open source and free forever.</p>
-                        <div className="flex items-center gap-2">
+                    <div className="max-w-7xl mx-auto pt-12 mt-12 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-muted-foreground">
+                        <p>© {new Date().getFullYear()} Shiftify. All rights reserved.</p>
+                        <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/5">
                             <span>Made with</span>
                             <Heart className="w-4 h-4 text-red-500 fill-current animate-pulse" />
-                            <span>by HuLaxx</span>
+                            <span>a project by <strong className="text-white">HuLaxx</strong></span>
                         </div>
                     </div>
                 </div>

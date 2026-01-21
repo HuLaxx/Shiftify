@@ -1,22 +1,21 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter, Space_Grotesk, Merienda } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-space-grotesk",
-  display: "swap",
+});
+const merienda = Merienda({
+  subsets: ["latin"],
+  variable: "--font-merienda",
 });
 
 export const metadata: Metadata = {
-  title: "Shiftify | Premium Music Transfer",
-  description: "Seamlessly transfer your YouTube Music library with a secure, cookie-first workflow. No API keys required.",
+  title: "Shiftify - Transfer Your Music",
+  description: "Transfer your YouTube Music library to other platforms locally.",
 };
 
 export default function RootLayout({
@@ -25,8 +24,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
-      <body className="font-sans antialiased bg-background text-foreground overflow-x-hidden">
+    <html lang="en">
+      <body className={`${inter.variable} ${spaceGrotesk.variable} ${merienda.variable} font-sans antialiased`}>
         {children}
       </body>
     </html>

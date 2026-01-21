@@ -8,6 +8,9 @@
   --color-background: #050a14;
   --color-foreground: #f0f4f8;
 
+  --font-script: var(--font-merienda), cursive;
+  /* HuLaX Font */
+
   --color-primary: #3b82f6;
   /* Blue-500 (Dominant) */
   --color-primary-foreground: #ffffff;
@@ -115,6 +118,20 @@
 :root {
   --background: var(--color-background);
   --foreground: var(--color-foreground);
+}
+
+/* HuLaX Branding Classes */
+.hulax-credit-label {
+  font-family: var(--font-script);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+}
+
+.hulax-credit {
+  font-family: var(--font-script);
+  font-weight: 600;
+  letter-spacing: 0.04em;
 }
 
 html {

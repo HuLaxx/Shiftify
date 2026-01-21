@@ -70,15 +70,32 @@ export default function PageLayout({
                             })}
                         </div>
 
-                        {/* GitHub Link */}
-                        <Link
-                            href="https://github.com/HuLaxx/Shiftify"
-                            target="_blank"
-                            className="px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-blue-500 rounded-full hover:from-blue-500 hover:to-blue-400 transition-all shadow-lg shadow-blue-500/20 flex items-center gap-2 group"
-                        >
-                            <Github className="w-4 h-4 group-hover:rotate-12 transition-transform" />
-                            <span className="hidden sm:inline">Star</span>
-                        </Link>
+                        <div className="flex items-center gap-4">
+                            {/* GitHub Link */}
+                            <Link
+                                href="https://github.com/HuLaxx/Shiftify"
+                                target="_blank"
+                                className="hidden sm:flex px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-blue-500 rounded-full hover:from-blue-500 hover:to-blue-400 transition-all shadow-lg shadow-blue-500/20 items-center gap-2 group"
+                            >
+                                <Github className="w-4 h-4 group-hover:rotate-12 transition-transform" />
+                                <span className="hidden lg:inline">Star</span>
+                            </Link>
+
+                            {/* HuLaX Header Credit */}
+                            <a
+                                href="https://hulax.vercel.app"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="group flex flex-col items-center gap-0.5 text-center leading-tight text-white/70"
+                            >
+                                <span className="hulax-credit-label text-[0.6rem] text-white/60 transition-colors group-hover:text-white/70">
+                                    A website by
+                                </span>
+                                <span className="hulax-credit inline-block origin-left text-[0.85rem] text-white/80 transition-all group-hover:scale-110 group-hover:text-amber-500 group-hover:font-black group-hover:drop-shadow-[0_0_14px_rgba(214,182,138,0.45)] sm:text-base">
+                                    HuLaX
+                                </span>
+                            </a>
+                        </div>
                     </nav>
                 </div>
             </header>
@@ -118,20 +135,30 @@ export default function PageLayout({
                         <div>
                             <h3 className="font-display font-bold text-sm uppercase tracking-wider text-white mb-6">Connect</h3>
                             <ul className="space-y-4 text-sm text-muted-foreground">
-                                <li><Link href="https://github.com/HuLaxx/Shiftify" target="_blank" className="hover:text-blue-400 transition-colors flex items-center gap-2"><Github className="w-4 h-4" /> GitHub</Link></li>
-                                <li><Link href="#" className="hover:text-blue-400 transition-colors flex items-center gap-2"><Linkedin className="w-4 h-4" /> LinkedIn</Link></li>
-                                <li><Link href="mailto:contact@example.com" className="hover:text-blue-400 transition-colors flex items-center gap-2"><Mail className="w-4 h-4" /> Gmail</Link></li>
+                                <li><Link href="https://github.com/HuLaxx" target="_blank" className="hover:text-blue-400 transition-colors flex items-center gap-2"><Github className="w-4 h-4" /> GitHub</Link></li>
+                                <li><Link href="https://www.linkedin.com/in/rahul-khanke-853717218/" target="_blank" className="hover:text-blue-400 transition-colors flex items-center gap-2"><Linkedin className="w-4 h-4" /> LinkedIn</Link></li>
+                                <li><Link href="mailto:rahulkhane786@gmail.com" className="hover:text-blue-400 transition-colors flex items-center gap-2"><Mail className="w-4 h-4" /> Gmail</Link></li>
                             </ul>
                         </div>
                     </div>
 
                     <div className="max-w-7xl mx-auto pt-12 mt-12 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-muted-foreground">
                         <p>© {new Date().getFullYear()} Shiftify. All rights reserved.</p>
-                        <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/5">
-                            <span>Made with</span>
-                            <Heart className="w-4 h-4 text-red-500 fill-current animate-pulse" />
-                            <span>a project by <strong className="text-white">HuLaxx</strong></span>
-                        </div>
+
+                        {/* HuLaX Footer Credit */}
+                        <a
+                            href="https://hulax.vercel.app"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="group inline-flex items-baseline gap-1 text-white/70"
+                        >
+                            <span className="hulax-credit-label text-white/60 transition-colors group-hover:text-white/70">
+                                A website by
+                            </span>
+                            <span className="hulax-credit inline-block origin-left text-base text-white/80 transition-all group-hover:scale-110 group-hover:text-amber-500 group-hover:font-black group-hover:drop-shadow-[0_0_14px_rgba(214,182,138,0.45)] sm:text-lg">
+                                HuLaX
+                            </span>
+                        </a>
                     </div>
                 </div>
             </footer>

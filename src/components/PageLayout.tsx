@@ -24,8 +24,8 @@ export default function PageLayout({
     children,
     showOrbs = true,
     orbConfig = [
-        { color: "primary", position: "top-[-20%] right-[-10%]", size: "lg" },
-        { color: "secondary", position: "bottom-[10%] left-[-10%]", size: "md" },
+        { color: "primary", position: "top-[-20%] right-[-10%]", size: "lg" }, // Blue
+        { color: "secondary", position: "bottom-[10%] left-[-10%]", size: "md" }, // Fuchsia
     ]
 }: PageLayoutProps) {
     const pathname = usePathname();
@@ -74,7 +74,7 @@ export default function PageLayout({
                         <Link
                             href="https://github.com/HuLaxx/Shiftify"
                             target="_blank"
-                            className="px-4 py-2 text-sm font-medium text-white bg-primary rounded-full hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 flex items-center gap-2"
+                            className="px-4 py-2 text-sm font-medium text-white bg-primary rounded-full hover:bg-blue-600 transition-all shadow-lg shadow-primary/20 flex items-center gap-2"
                         >
                             <Github className="w-4 h-4" />
                             <span className="hidden sm:inline">Star</span>
@@ -113,7 +113,7 @@ export default function PageLayout({
 
                         {/* Links Column */}
                         <div>
-                            <h3 className="font-display font-semibold text-lg mb-6">Product</h3>
+                            <h3 className="font-display font-semibold text-lg mb-6 text-white">Product</h3>
                             <ul className="space-y-4 text-sm text-muted-foreground">
                                 <li><Link href="/transfer" className="hover:text-primary transition-colors">Transfer Music</Link></li>
                                 <li><Link href="/import" className="hover:text-primary transition-colors">Import Playlist</Link></li>
@@ -124,7 +124,7 @@ export default function PageLayout({
 
                         {/* Legal/Info Column */}
                         <div>
-                            <h3 className="font-display font-semibold text-lg mb-6">Resources</h3>
+                            <h3 className="font-display font-semibold text-lg mb-6 text-white">Resources</h3>
                             <ul className="space-y-4 text-sm text-muted-foreground">
                                 <li><Link href="#" className="hover:text-primary transition-colors">Documentation</Link></li>
                                 <li><Link href="#" className="hover:text-primary transition-colors">Privacy Guide</Link></li>

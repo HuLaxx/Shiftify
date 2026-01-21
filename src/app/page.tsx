@@ -32,19 +32,19 @@ const features = [
     icon: Shield,
     title: "Privacy First",
     description: "Cookie-based authentication. Your data never leaves your browser.",
-    gradient: "from-blue-500/20 to-cyan-500/5",
+    gradient: "from-blue-500/20 to-fuchsia-500/5",
   },
   {
     icon: Zap,
     title: "Lightning Fast",
     description: "Optimized transfer protocol with automatic retry and recovery.",
-    gradient: "from-cyan-500/20 to-purple-500/5",
+    gradient: "from-fuchsia-500/20 to-amber-500/5",
   },
   {
     icon: Download,
     title: "Full Export",
     description: "Export failed transfers as CSV. Never lose a single track.",
-    gradient: "from-purple-500/20 to-blue-500/5",
+    gradient: "from-amber-500/20 to-blue-500/5",
   },
 ];
 
@@ -73,7 +73,7 @@ export default function Home() {
         >
           {/* Badge */}
           <motion.div variants={item} className="flex justify-center mb-8">
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium text-cyan-400 border-cyan-500/20">
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium text-blue-400 border-blue-500/20 shadow-lg shadow-blue-500/10">
               <Shield className="w-4 h-4" />
               Privacy-First Music Transfer
             </span>
@@ -83,7 +83,7 @@ export default function Home() {
           <motion.div variants={item} className="space-y-4">
             <h1 className="text-5xl md:text-7xl font-display font-bold tracking-tight text-white leading-tight">
               Move your music <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-500 animate-gradient">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-fuchsia-400 to-amber-400 animate-gradient">
                 without limits
               </span>
             </h1>
@@ -123,7 +123,7 @@ export default function Home() {
       {/* Feature Preview Section */}
       <section className="py-24 relative">
         <div className="text-center mb-16 space-y-4">
-          <h2 className="text-3xl font-display font-bold">Why Shiftify?</h2>
+          <h2 className="text-3xl font-display font-bold text-white">Why Shiftify?</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Built for music lovers who care about their data ownership.
           </p>
@@ -165,9 +165,9 @@ export default function Home() {
             viewport={{ once: true }}
             className="space-y-8"
           >
-            <h2 className="text-4xl font-display font-bold leading-tight">
+            <h2 className="text-4xl font-display font-bold leading-tight text-white">
               Visual Transfer <br />
-              <span className="text-cyan-400">Control Center</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-fuchsia-400">Control Center</span>
             </h2>
             <p className="text-lg text-muted-foreground">
               Watch your transfer in real-time with our terminal-inspired interface. Verify every track, retry failed items, and export detailed reports.
@@ -199,7 +199,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-purple-500/20 blur-2xl rounded-3xl" />
+            <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-fuchsia-500/20 blur-2xl rounded-3xl" />
             <Card variant="glow" className="relative p-6 bg-black/40 backdrop-blur-xl border-white/10">
               {/* Mock UI */}
               <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/5">
@@ -213,9 +213,9 @@ export default function Home() {
               <div className="space-y-3 font-mono text-sm">
                 <div className="text-green-400">$ init transfer --source=ytm</div>
                 <div className="text-muted-foreground">Connecting to source... <span className="text-blue-400">Connected</span></div>
-                <div className="text-muted-foreground">Fetching playlist 'Driving Vibes'... <span className="text-cyan-400">142 tracks found</span></div>
+                <div className="text-muted-foreground">Fetching playlist 'Driving Vibes'... <span className="text-fuchsia-400">142 tracks found</span></div>
                 <div className="h-1 w-full bg-white/10 rounded-full overflow-hidden mt-4">
-                  <div className="h-full w-2/3 bg-gradient-to-r from-blue-500 to-cyan-400" />
+                  <div className="h-full w-2/3 bg-gradient-to-r from-blue-500 to-fuchsia-500" />
                 </div>
                 <div className="flex justify-between text-xs text-muted-foreground mt-1">
                   <span>Progress: 67%</span>

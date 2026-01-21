@@ -16,32 +16,32 @@ export default function AnimatedLogo({ size = "md" }: { size?: "sm" | "md" | "lg
         <Link href="/" className="flex items-center gap-3 group px-2 py-1">
             {/* Animated gradient border container */}
             <div className="relative">
-                {/* Rotating gradient ring */}
+                {/* Rotating gradient ring - Vibrant Mix */}
                 <div
                     className={`absolute -inset-0.5 rounded-xl opacity-75 blur-sm group-hover:opacity-100 transition-opacity`}
                     style={{
-                        background: "linear-gradient(135deg, #3b82f6, #06b6d4, #8b5cf6, #3b82f6)",
+                        background: "linear-gradient(135deg, #3b82f6, #d946ef, #f59e0b, #3b82f6)",
                         backgroundSize: "300% 300%",
                         animation: "gradient-shift 4s ease infinite, spin-slow 8s linear infinite",
                     }}
                 />
 
-                {/* Inner logo container - White & Blue dominant */}
+                {/* Inner logo container */}
                 <div
                     className={`relative ${s.box} rounded-xl bg-white flex items-center justify-center shadow-lg shadow-primary/20 group-hover:shadow-xl group-hover:shadow-primary/40 transition-all overflow-hidden`}
                 >
-                    {/* Inner gradient fill for the "orange" part request -> now blue gradient */}
+                    {/* Inner gradient fill - Blue to Fuchsia */}
                     <div
-                        className="absolute inset-0 bg-gradient-to-br from-blue-500 to-cyan-400 opacity-90"
+                        className="absolute inset-0 bg-gradient-to-br from-blue-500 to-fuchsia-500 opacity-90"
                         style={{
-                            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" // Full fill but can be shaped
+                            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)"
                         }}
                     />
 
                     {/* Icon */}
                     <Flame className={`relative z-10 ${s.icon} text-white fill-current drop-shadow-sm`} />
 
-                    {/* Hover flame animation inside */}
+                    {/* Hover flame animation inside - Warm Amber/Red */}
                     <div
                         className="absolute inset-0 bg-gradient-to-t from-orange-500 via-red-500 to-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                         style={{
@@ -54,7 +54,7 @@ export default function AnimatedLogo({ size = "md" }: { size?: "sm" | "md" | "lg
 
             {/* Text with hover effect */}
             <span
-                className={`font-display font-bold ${s.text} tracking-tight text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-orange-400 group-hover:via-red-500 group-hover:to-yellow-500 transition-all duration-300`}
+                className={`font-display font-bold ${s.text} tracking-tight text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-fuchsia-500 group-hover:via-orange-500 group-hover:to-blue-500 transition-all duration-300`}
             >
                 Shiftify
             </span>

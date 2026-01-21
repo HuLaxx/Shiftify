@@ -12,8 +12,7 @@ import {
 
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
-import TopNav from "@/components/TopNav";
-import GlowOrb from "@/components/ui/GlowOrb";
+import PageLayout from "@/components/PageLayout";
 
 // --- Types ---
 
@@ -283,7 +282,7 @@ export default function TransferPage() {
   // --- Step Indicator ---
 
   const renderStepIndicator = () => (
-    <div className="flex justify-center mb-12">
+    <div className="flex justify-center mb-10">
       <div className="flex items-center gap-3">
         {steps.map((s, i) => (
           <div key={s.id} className="flex items-center">
@@ -314,15 +313,13 @@ export default function TransferPage() {
   const smallInputClass = "w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-foreground focus:border-primary/50 transition-all outline-none";
 
   return (
-    <div className="min-h-screen relative">
-      {/* Background */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-        <GlowOrb color="primary" size="lg" className="top-[-20%] right-[-10%]" delay={0} />
-        <GlowOrb color="secondary" size="md" className="bottom-[10%] left-[-10%]" delay={1.5} />
-      </div>
-
-      <div className="relative z-10 pt-8 pb-12 px-4 max-w-4xl mx-auto">
-        <TopNav />
+    <PageLayout
+      orbConfig={[
+        { color: "primary", position: "top-[-20%] right-[-10%]", size: "lg" },
+        { color: "secondary", position: "bottom-[10%] left-[-10%]", size: "md" },
+      ]}
+    >
+      <div className="max-w-4xl mx-auto">
         {renderStepIndicator()}
 
         <AnimatePresence mode="wait">
@@ -523,6 +520,6 @@ export default function TransferPage() {
 
         </AnimatePresence>
       </div>
-    </div>
+    </PageLayout>
   );
 }

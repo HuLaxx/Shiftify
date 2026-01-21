@@ -12,6 +12,15 @@ const escapeCsv = (value: string | number | null) => {
   return stringValue;
 };
 
+type ImportItemRow = {
+  title: string;
+  artist: string;
+  album: string | null;
+  duration_ms: number | null;
+  score: number;
+  status: string;
+};
+
 export async function GET(
   _req: Request,
   context: { params: Promise<{ id: string }> },
@@ -23,7 +32,7 @@ export async function GET(
       `SELECT title, artist, album, duration_ms, score, status
        FROM import_items WHERE import_id = ? ORDER BY score DESC`,
     )
-    .all(params.id);
+    .all(params.id) as ImportItemRow[];
 
   if (!rows || rows.length === 0) {
     return NextResponse.json({ error: "No items found." }, { status: 404 });

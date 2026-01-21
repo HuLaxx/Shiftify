@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { CheckCircle2, Filter, RefreshCw, XCircle, Check } from "lucide-react";
@@ -8,7 +8,6 @@ import TopNav from "@/components/TopNav";
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import GlowOrb from "@/components/ui/GlowOrb";
-import { motion } from "framer-motion";
 
 type ImportSummary = {
   id: string;
@@ -31,7 +30,7 @@ type ImportItem = {
 const statusTabs = ["all", "pending", "approved", "rejected", "invalid"] as const;
 type StatusTab = (typeof statusTabs)[number];
 
-export default function ReviewPage() {
+function ReviewContent() {
   const searchParams = useSearchParams();
   const [imports, setImports] = useState<ImportSummary[]>([]);
   const [selectedImport, setSelectedImport] = useState<string | null>(null);
@@ -184,9 +183,8 @@ export default function ReviewPage() {
                   </div>
                 ) : (
                   filteredItems.map((item) => (
-                    <motion.div
+                    <div
                       key={item.id}
-                      layout
                       className="group flex items-center justify-between p-3 rounded-xl hover:bg-white/5 border border-transparent hover:border-white/10 transition-colors"
                     >
                       <div className="min-w-0 flex-1 pr-4">
@@ -208,7 +206,7 @@ export default function ReviewPage() {
                           <XCircle className="w-5 h-5" />
                         </button>
                       </div>
-                    </motion.div>
+                    </div>
                   ))
                 )}
               </div>
@@ -217,5 +215,13 @@ export default function ReviewPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function ReviewPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center text-muted-foreground">Loading...</div>}>
+      <ReviewContent />
+    </Suspense>
   );
 }

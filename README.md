@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="public/assets/logo.png" alt="Shiftify Logo" width="120" />
+  <img src="public/assets/logo.png" alt="Shiftify Logo" width="120" style="border-radius: 16px; box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);" />
   <h1>Shiftify</h1>
   <p><strong>The Universal Music Transfer Tool</strong></p>
   
@@ -14,9 +14,6 @@
   </a>
 
   <br />
-  <br />
-
-  <img src="public/assets/hero-banner.png" alt="Shiftify Hero" width="100%" style="border-radius: 10px; box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);" />
 </div>
 
 ---
@@ -37,16 +34,16 @@ Built with a **cyberpunk-inspired dark UI**, Shiftify offers a visual treat whil
 
 </div>
 
+<div align="center">
+  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3A1ZnVuNTdpb2V4cWExb2Z6bWl4Yng3YmV6YmZ6YmZ6YmZ6eSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7TKSjRrfIPjeiVyM/giphy.gif" alt="Music Vibe" width="100%" style="border-radius: 12px; opacity: 0.8;" />
+</div>
+
 <br />
 
 - **🎹 Music Visualizer**: Dynamic audio bars and floating orb animations.
 - **🧙‍♂️ Advanced Wizard**: Step-by-step guided transfer process.
 - **📊 Smart Parsing**: Robust handling of large playback queues and playlists.
 - **💾 Export Formats**: Full support for JSON and CSV exports.
-
-## 🛠️ Architecture & Flow
-
-<img src="public/assets/features.png" alt="Architecture Diagram" width="100%" style="border-radius: 10px;" />
 
 ## 🚀 Getting Started
 

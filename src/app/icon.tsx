@@ -14,7 +14,7 @@ export default function Icon() {
             <div
                 style={{
                     fontSize: 24,
-                    background: "linear-gradient(135deg, #1e3a8a, #701a75, #b45309)", // Darker Blue -> Fuchsia -> Amber
+                    background: "linear-gradient(135deg, #1e3a8a, #701a75, #b45309, #1e3a8a)", // Darker Blue -> Fuchsia -> Amber -> Blue (Loop)
                     width: "100%",
                     height: "100%",
                     display: "flex",
@@ -22,7 +22,7 @@ export default function Icon() {
                     justifyContent: "center",
                     color: "white",
                     borderRadius: "8px", // Rounded square
-                    boxShadow: "0 0 4px rgba(59, 130, 246, 0.5)",
+                    boxShadow: "0 0 8px rgba(59, 130, 246, 0.6)",
                 }}
             >
                 {/* Simple Flame-like shape using text or SVG path if needed. Using a simple emoji or character for reliability in simple icon, or SVG */}

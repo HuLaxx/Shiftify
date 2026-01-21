@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import AnimatedLogo from "@/components/AnimatedLogo";
 import GlowOrb from "@/components/ui/GlowOrb";
-import { Flame, Github, Twitter, Heart } from "lucide-react";
+import { Flame, Github, Twitter, Heart, Linkedin, Mail } from "lucide-react";
 
 const navLinks = [
     { href: "/transfer", label: "Transfer" },
@@ -119,8 +119,8 @@ export default function PageLayout({
                             <h3 className="font-display font-bold text-sm uppercase tracking-wider text-white mb-6">Connect</h3>
                             <ul className="space-y-4 text-sm text-muted-foreground">
                                 <li><Link href="https://github.com/HuLaxx/Shiftify" target="_blank" className="hover:text-blue-400 transition-colors flex items-center gap-2"><Github className="w-4 h-4" /> GitHub</Link></li>
-                                <li><Link href="#" className="hover:text-blue-400 transition-colors flex items-center gap-2"><Twitter className="w-4 h-4" /> Twitter</Link></li>
-                                <li><Link href="#" className="hover:text-blue-400 transition-colors">Contact Support</Link></li>
+                                <li><Link href="#" className="hover:text-blue-400 transition-colors flex items-center gap-2"><Linkedin className="w-4 h-4" /> LinkedIn</Link></li>
+                                <li><Link href="mailto:contact@example.com" className="hover:text-blue-400 transition-colors flex items-center gap-2"><Mail className="w-4 h-4" /> Gmail</Link></li>
                             </ul>
                         </div>
                     </div>

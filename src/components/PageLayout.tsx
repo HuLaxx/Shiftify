@@ -59,12 +59,12 @@ export default function PageLayout({
                                 href="https://hulax.vercel.app"
                                 target="_blank"
                                 rel="noreferrer"
-                                className="group flex flex-col items-start gap-0.5 leading-tight text-white/70"
+                                className="flex flex-col items-start gap-0.5 leading-tight text-white/70"
                             >
-                                <span className="hulax-credit-label text-[0.6rem] text-white/60 transition-all group-hover:text-white group-hover:scale-105 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]">
+                                <span className="hulax-credit-label text-[0.5rem] text-white/60 transition-colors hover:text-white">
                                     A website by
                                 </span>
-                                <span className="hulax-credit inline-block origin-left text-[0.85rem] text-white/80 transition-all group-hover:scale-110 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-500 group-hover:via-fuchsia-500 group-hover:to-amber-500 group-hover:font-black group-hover:drop-shadow-[0_0_14px_rgba(214,182,138,0.45)] sm:text-base">
+                                <span className="hulax-credit inline-block origin-left text-[0.7rem] text-white/80 transition-all hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-blue-600 hover:via-fuchsia-600 hover:to-amber-500 hover:font-black hover:drop-shadow-[0_0_14px_rgba(214,182,138,0.45)] sm:text-sm">
                                     HuLaX
                                 </span>
                             </a>
@@ -150,20 +150,25 @@ export default function PageLayout({
                     <div className="max-w-7xl mx-auto pt-12 mt-12 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-muted-foreground">
                         <p>© {new Date().getFullYear()} Shiftify. All rights reserved.</p>
 
-                        {/* HuLaX Footer Credit */}
-                        <a
-                            href="https://hulax.vercel.app"
-                            target="_blank"
-                            rel="noreferrer"
-                            className="group inline-flex items-baseline gap-1 text-white/70"
-                        >
-                            <span className="hulax-credit-label text-white/60 transition-all group-hover:text-white group-hover:scale-105 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]">
+                        {/* HuLaX Footer Credit - Independent Hovers */}
+                        <div className="flex items-baseline gap-1 text-white/70">
+                            <a
+                                href="https://hulax.vercel.app"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="hulax-credit-label text-white/60 transition-all hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
+                            >
                                 A website by
-                            </span>
-                            <span className="hulax-credit inline-block origin-left text-base text-white/80 transition-all group-hover:scale-110 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-500 group-hover:via-fuchsia-500 group-hover:to-amber-500 group-hover:font-black group-hover:drop-shadow-[0_0_14px_rgba(214,182,138,0.45)] sm:text-lg">
+                            </a>
+                            <a
+                                href="https://hulax.vercel.app"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="hulax-credit inline-block origin-left text-base text-white/80 transition-all hover:scale-110 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-blue-600 hover:via-fuchsia-600 hover:to-amber-500 hover:font-black hover:drop-shadow-[0_0_14px_rgba(214,182,138,0.45)] sm:text-lg"
+                            >
                                 HuLaX
-                            </span>
-                        </a>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </footer>

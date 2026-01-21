@@ -59,12 +59,12 @@ export default function PageLayout({
                                 href="https://hulax.vercel.app"
                                 target="_blank"
                                 rel="noreferrer"
-                                className="flex flex-col items-start gap-0.5 leading-tight text-white/70"
+                                className="group flex flex-col items-start gap-0.5 leading-tight text-white/70"
                             >
-                                <span className="hulax-credit-label text-[0.5rem] text-white/60 transition-colors hover:text-white">
+                                <span className="hulax-credit-label text-[0.5rem] text-white/60 transition-colors group-hover:text-white">
                                     A website by
                                 </span>
-                                <span className="hulax-credit inline-block origin-left text-[0.7rem] text-white/80 transition-all hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-blue-600 hover:via-fuchsia-600 hover:to-amber-500 hover:font-black hover:drop-shadow-[0_0_14px_rgba(214,182,138,0.45)] sm:text-sm">
+                                <span className="hulax-credit inline-block origin-left text-[0.7rem] text-white/80 transition-all group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:via-fuchsia-600 group-hover:to-amber-500 group-hover:font-black group-hover:drop-shadow-[0_0_14px_rgba(214,182,138,0.45)] sm:text-sm">
                                     HuLaX
                                 </span>
                             </a>
@@ -92,15 +92,24 @@ export default function PageLayout({
                             })}
                         </div>
 
-                        {/* Right: GitHub Link */}
-                        <Link
-                            href="https://github.com/HuLaxx/Shiftify"
-                            target="_blank"
-                            className="px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-blue-500 rounded-full hover:from-blue-500 hover:to-blue-400 transition-all shadow-lg shadow-blue-500/20 flex items-center gap-2 group"
-                        >
-                            <Github className="w-4 h-4 group-hover:rotate-12 transition-transform" />
-                            <span className="hidden sm:inline">Star</span>
-                        </Link>
+                        {/* Right: GitHub Link (Glassy/Grey) */}
+                        <div className="flex items-center gap-3">
+                            {/* Music Visualizer Animation */}
+                            <div className="hidden sm:flex items-end gap-0.5 h-4 w-4 opacity-50">
+                                <div className="w-1 bg-white rounded-full animate-music-bar-1" style={{ height: '40%' }}></div>
+                                <div className="w-1 bg-white rounded-full animate-music-bar-2" style={{ height: '80%' }}></div>
+                                <div className="w-1 bg-white rounded-full animate-music-bar-3" style={{ height: '60%' }}></div>
+                            </div>
+
+                            <Link
+                                href="https://github.com/HuLaxx/Shiftify"
+                                target="_blank"
+                                className="px-4 py-2 text-sm font-medium text-muted-foreground bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:text-white hover:border-white/20 transition-all shadow-lg hover:shadow-white/5 flex items-center gap-2 group"
+                            >
+                                <Github className="w-4 h-4 group-hover:rotate-12 transition-transform opacity-70 group-hover:opacity-100" />
+                                <span className="hidden sm:inline">Star</span>
+                            </Link>
+                        </div>
                     </nav>
                 </div>
             </header>
@@ -150,25 +159,20 @@ export default function PageLayout({
                     <div className="max-w-7xl mx-auto pt-12 mt-12 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-muted-foreground">
                         <p>© {new Date().getFullYear()} Shiftify. All rights reserved.</p>
 
-                        {/* HuLaX Footer Credit - Independent Hovers */}
-                        <div className="flex items-baseline gap-1 text-white/70">
-                            <a
-                                href="https://hulax.vercel.app"
-                                target="_blank"
-                                rel="noreferrer"
-                                className="hulax-credit-label text-white/60 transition-all hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
-                            >
+                        {/* HuLaX Footer Credit */}
+                        <a
+                            href="https://hulax.vercel.app"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="group inline-flex items-baseline gap-1 text-white/70"
+                        >
+                            <span className="hulax-credit-label text-white/60 transition-all group-hover:text-white group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]">
                                 A website by
-                            </a>
-                            <a
-                                href="https://hulax.vercel.app"
-                                target="_blank"
-                                rel="noreferrer"
-                                className="hulax-credit inline-block origin-left text-base text-white/80 transition-all hover:scale-110 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-blue-600 hover:via-fuchsia-600 hover:to-amber-500 hover:font-black hover:drop-shadow-[0_0_14px_rgba(214,182,138,0.45)] sm:text-lg"
-                            >
+                            </span>
+                            <span className="hulax-credit inline-block origin-left text-base text-white/80 transition-all group-hover:scale-110 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:via-fuchsia-600 group-hover:to-amber-500 group-hover:font-black group-hover:drop-shadow-[0_0_14px_rgba(214,182,138,0.45)] sm:text-lg">
                                 HuLaX
-                            </a>
-                        </div>
+                            </span>
+                        </a>
                     </div>
                 </div>
             </footer>

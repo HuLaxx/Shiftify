@@ -13,37 +13,48 @@ export default function AnimatedLogo({ size = "md" }: { size?: "sm" | "md" | "lg
     const s = sizes[size];
 
     return (
-        <Link href="/" className="flex items-center gap-3 group">
+        <Link href="/" className="flex items-center gap-3 group px-2 py-1">
             {/* Animated gradient border container */}
             <div className="relative">
                 {/* Rotating gradient ring */}
                 <div
                     className={`absolute -inset-0.5 rounded-xl opacity-75 blur-sm group-hover:opacity-100 transition-opacity`}
                     style={{
-                        background: "linear-gradient(135deg, #ff6b35, #9d4edd, #00d9ff, #ff6b35)",
+                        background: "linear-gradient(135deg, #3b82f6, #06b6d4, #8b5cf6, #3b82f6)",
                         backgroundSize: "300% 300%",
                         animation: "gradient-shift 4s ease infinite, spin-slow 8s linear infinite",
                     }}
                 />
 
-                {/* Inner logo container */}
+                {/* Inner logo container - White & Blue dominant */}
                 <div
-                    className={`relative ${s.box} rounded-xl bg-gradient-to-br from-primary via-orange-500 to-primary flex items-center justify-center shadow-lg shadow-primary/40 group-hover:shadow-xl group-hover:shadow-primary/60 transition-all`}
-                    style={{
-                        animation: "gradient-shift 6s ease infinite",
-                        backgroundSize: "200% 200%",
-                    }}
+                    className={`relative ${s.box} rounded-xl bg-white flex items-center justify-center shadow-lg shadow-primary/20 group-hover:shadow-xl group-hover:shadow-primary/40 transition-all overflow-hidden`}
                 >
-                    <Flame className={`${s.icon} text-white fill-current drop-shadow-lg`} />
+                    {/* Inner gradient fill for the "orange" part request -> now blue gradient */}
+                    <div
+                        className="absolute inset-0 bg-gradient-to-br from-blue-500 to-cyan-400 opacity-90"
+                        style={{
+                            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" // Full fill but can be shaped
+                        }}
+                    />
 
-                    {/* Shine effect */}
-                    <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    {/* Icon */}
+                    <Flame className={`relative z-10 ${s.icon} text-white fill-current drop-shadow-sm`} />
+
+                    {/* Hover flame animation inside */}
+                    <div
+                        className="absolute inset-0 bg-gradient-to-t from-orange-500 via-red-500 to-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                        style={{
+                            mixBlendMode: "overlay",
+                            filter: "blur(4px)"
+                        }}
+                    />
                 </div>
             </div>
 
-            {/* Text with gradient */}
+            {/* Text with hover effect */}
             <span
-                className={`font-display font-bold ${s.text} tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground via-foreground to-muted-foreground group-hover:from-primary group-hover:to-secondary transition-all`}
+                className={`font-display font-bold ${s.text} tracking-tight text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-orange-400 group-hover:via-red-500 group-hover:to-yellow-500 transition-all duration-300`}
             >
                 Shiftify
             </span>

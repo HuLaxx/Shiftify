@@ -4,22 +4,25 @@
   --font-sans: var(--font-inter), system-ui, sans-serif;
   --font-display: var(--font-space-grotesk), system-ui, sans-serif;
 
-  /* Dark Theme Color Palette */
-  --color-background: #0a0a0f;
-  --color-foreground: #f0f0f5;
+  /* Dark Theme Color Palette - Blue Dominant */
+  --color-background: #050a14;
+  --color-foreground: #f0f4f8;
 
-  --color-primary: #ff6b35;
-  --color-primary-foreground: #0a0a0f;
+  --color-primary: #3b82f6;
+  /* Blue-500 */
+  --color-primary-foreground: #ffffff;
 
-  --color-secondary: #9d4edd;
-  --color-secondary-foreground: #f0f0f5;
+  --color-secondary: #06b6d4;
+  /* Cyan-500 */
+  --color-secondary-foreground: #ffffff;
 
-  --color-accent: #00d9ff;
-  --color-muted: #1a1a24;
-  --color-muted-foreground: #71717a;
+  --color-accent: #8b5cf6;
+  /* Violet-500 */
+  --color-muted: #111827;
+  --color-muted-foreground: #94a3b8;
 
-  --color-card: rgba(255, 255, 255, 0.03);
-  --color-border: rgba(255, 255, 255, 0.08);
+  --color-card: rgba(15, 23, 42, 0.4);
+  --color-border: rgba(59, 130, 246, 0.15);
 
   /* Animation Keyframes */
   --animate-float: float 8s ease-in-out infinite;
@@ -121,75 +124,76 @@ html {
 body {
   background-color: var(--background);
   color: var(--foreground);
+  /* Blue dominant gradients */
   background-image:
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255, 107, 53, 0.15), transparent),
-    radial-gradient(ellipse 60% 40% at 90% 80%, rgba(157, 78, 221, 0.1), transparent),
-    radial-gradient(ellipse 50% 30% at 10% 60%, rgba(0, 217, 255, 0.08), transparent);
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(59, 130, 246, 0.15), transparent),
+    radial-gradient(ellipse 60% 40% at 90% 80%, rgba(6, 182, 212, 0.1), transparent),
+    radial-gradient(ellipse 50% 30% at 10% 60%, rgba(139, 92, 246, 0.08), transparent);
   background-attachment: fixed;
 }
 
 /* Selection */
 ::selection {
-  background: rgba(255, 107, 53, 0.3);
+  background: rgba(59, 130, 246, 0.3);
   color: #fff;
 }
 
 /* Glassmorphism */
 .glass {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(15, 23, 42, 0.3);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(59, 130, 246, 0.1);
 }
 
 .glass-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.3) 100%);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.1);
   box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    inset 0 1px 0 rgba(59, 130, 246, 0.05);
 }
 
 .glass-card:hover {
-  border-color: rgba(255, 255, 255, 0.12);
+  border-color: rgba(59, 130, 246, 0.2);
   box-shadow:
     0 16px 48px rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    inset 0 1px 0 rgba(59, 130, 246, 0.1);
 }
 
-/* Glow Utilities */
+/* Glow Utilities - Updated for Blue */
 .glow-sm {
-  box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
 }
 
 .glow-md {
-  box-shadow: 0 0 40px rgba(255, 107, 53, 0.4);
+  box-shadow: 0 0 40px rgba(59, 130, 246, 0.4);
 }
 
 .glow-lg {
-  box-shadow: 0 0 60px rgba(255, 107, 53, 0.5);
+  box-shadow: 0 0 60px rgba(59, 130, 246, 0.5);
 }
 
 .glow-accent {
-  box-shadow: 0 0 30px rgba(0, 217, 255, 0.4);
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
 }
 
 .glow-secondary {
-  box-shadow: 0 0 30px rgba(157, 78, 221, 0.4);
+  box-shadow: 0 0 30px rgba(6, 182, 212, 0.4);
 }
 
-/* Text Gradients */
+/* Text Gradients - Blue dominant */
 .text-gradient {
-  background: linear-gradient(135deg, #ff6b35 0%, #ff8f6b 50%, #9d4edd 100%);
+  background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 50%, #8b5cf6 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .text-gradient-accent {
-  background: linear-gradient(135deg, #00d9ff 0%, #9d4edd 100%);
+  background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -197,7 +201,7 @@ body {
 
 /* Animated Gradient Background */
 .animated-gradient {
-  background: linear-gradient(-45deg, #ff6b35, #9d4edd, #00d9ff, #ff6b35);
+  background: linear-gradient(-45deg, #3b82f6, #06b6d4, #8b5cf6, #3b82f6);
   background-size: 400% 400%;
   animation: gradient-shift 8s ease infinite;
 }
@@ -205,8 +209,8 @@ body {
 /* Grid Pattern */
 .grid-pattern {
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 
@@ -217,16 +221,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(15, 23, 42, 0.5);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(59, 130, 246, 0.2);
   border-radius: 999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(59, 130, 246, 0.4);
 }
 
 /* Custom scrollbar class */
@@ -239,7 +243,7 @@ body {
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(59, 130, 246, 0.2);
   border-radius: 999px;
 }
 
@@ -248,7 +252,7 @@ input:focus,
 textarea:focus,
 select:focus {
   outline: none;
-  box-shadow: 0 0 0 2px rgba(255, 107, 53, 0.3);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.4);
 }
 
 /* Shimmer Effect */

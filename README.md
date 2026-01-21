@@ -1,103 +1,129 @@
 <div align="center">
-  <img src="public/assets/logo.png" alt="Shiftify Logo" width="120" style="border-radius: 16px; box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);" />
+  <img src="public/logo.png" alt="Shiftify logo" width="120" />
   <h1>Shiftify</h1>
-  <p><strong>The Universal Music Transfer Tool</strong></p>
-  
-  <a href="https://nextjs.org">
-    <img src="https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js" alt="Next.js" />
-  </a>
-  <a href="https://www.typescriptlang.org/">
-    <img src="https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript" alt="TypeScript" />
-  </a>
-  <a href="https://tailwindcss.com/">
-    <img src="https://img.shields.io/badge/Tailwind_CSS-3.4-38bdf8?style=for-the-badge&logo=tailwind-css" alt="Tailwind CSS" />
-  </a>
-
-  <br />
+  <p>Premium, privacy-first music transfer studio.</p>
+  <p>
+    <a href="https://github.com/HuLaxx/Shiftify">GitHub</a>
+  </p>
+  <p>
+    <img src="https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js" alt="Next.js" />
+    <img src="https://img.shields.io/badge/React-19-61dafb?style=flat-square&logo=react" alt="React" />
+    <img src="https://img.shields.io/badge/TypeScript-5-3178c6?style=flat-square&logo=typescript" alt="TypeScript" />
+    <img src="https://img.shields.io/badge/Tailwind-4-38bdf8?style=flat-square&logo=tailwind-css" alt="Tailwind CSS" />
+    <img src="https://img.shields.io/badge/Framer%20Motion-12-111111?style=flat-square&logo=framer" alt="Framer Motion" />
+  </p>
 </div>
 
----
+<p align="center">
+  <img src="public/assets/hero-banner.png" alt="Shiftify hero banner" width="100%" />
+</p>
 
-## 🎵 Overview
+## Overview
+Shiftify helps you move your YouTube Music playlists and liked songs using a cookie-first flow. Everything runs locally with an on-device SQLite database, so your data stays on your machine.
 
-**Shiftify** is a premium, privacy-focused tool designed to liberate your music library. Move your playlists from **YouTube Music** to local files or prepare them for other platforms seamlessly.
+## Highlights
+- Cookie-based transfer wizard with progress, retries, and live logs
+- Import formats: lines, CSV, and JSON
+- Review queue with approve and reject controls
+- Telemetry timeline for every transfer run
+- CSV export for import reports
+- Motion-first UI with page transitions, staggered reveals, and ambient backgrounds
 
-Built with a **cyberpunk-inspired dark UI**, Shiftify offers a visual treat while ensuring your data remains yours—no hidden servers, no API keys required, just pure local processing.
+## Motion Preview
+<p align="center">
+  <img src="https://media.giphy.com/media/3o7TKSjRrfIPjeiVyM/giphy.gif" alt="Shiftify motion preview" width="100%" />
+</p>
 
-## ✨ Features
+## UI Screens
+<p align="center">
+  <img src="public/assets/features.png" alt="Shiftify features" width="100%" />
+</p>
 
-<div align="center">
+<p align="center">
+  <img src="public/assets/features-diagram.png" alt="Shiftify transfer flow diagram" width="100%" />
+</p>
 
-| 🚀 **High Performance** | 🔒 **Privacy First** | 🎨 **Premium UI** |
-| :---: | :---: | :---: |
-| Built on the cutting-edge **Next.js 15** App Router for snappy, fluid transitions. | Zero server-side storage. Your cookies and headers never leave your machine. | Glassmorphism, neon accents (**Blue/Fuchsia/Amber**), and immersive animations. |
+## Quickstart
+1. Clone the repo
+   ```bash
+   git clone https://github.com/HuLaxx/Shiftify.git
+   cd Shiftify
+   ```
+2. Install dependencies
+   ```bash
+   npm install
+   ```
+3. Start the dev server
+   ```bash
+   npm run dev
+   ```
+4. Open `http://localhost:3000`
 
-</div>
+## Usage
+1. Go to `/transfer` and connect your source account with cookies
+2. Select a playlist or liked songs
+3. Verify the destination account cookies
+4. Start the transfer and monitor progress
+5. Use `/runs` for logs and `/review` for import approvals
 
-<div align="center">
-  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3A1ZnVuNTdpb2V4cWExb2Z6bWl4Yng3YmV6YmZ6YmZ6YmZ6eSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7TKSjRrfIPjeiVyM/giphy.gif" alt="Music Vibe" width="100%" style="border-radius: 12px; opacity: 0.8;" />
-</div>
+## Data and Privacy
+- Local database: `data/shiftify.db`
+- Cookies are used only in your browser session and never sent to a third-party server
 
-<br />
+## Optional Config
+```bash
+NEXT_PUBLIC_DEMO_MODE=true
+```
 
-- **🎹 Music Visualizer**: Dynamic audio bars and floating orb animations.
-- **🧙‍♂️ Advanced Wizard**: Step-by-step guided transfer process.
-- **📊 Smart Parsing**: Robust handling of large playback queues and playlists.
-- **💾 Export Formats**: Full support for JSON and CSV exports.
+## Project Structure
+```
+src/
+  app/          Next.js App Router pages and APIs
+  components/   UI primitives and layout pieces
+  lib/          local DB and helpers
+public/         static assets
+data/           local SQLite storage
+```
 
-## 🚀 Getting Started
+<details>
+  <summary>Routes</summary>
 
-### Prerequisites
+  - `/` Home
+  - `/transfer` Transfer flow
+  - `/import` Import creator
+  - `/review` Review queue
+  - `/runs` Run telemetry
+</details>
 
-- Node.js 18+
-- npm or pnpm
+<details>
+  <summary>API Endpoints</summary>
 
-### Installation
+  - `POST /api/ytm` YouTube Music actions
+  - `GET /api/imports` Import list
+  - `POST /api/imports` Create import
+  - `GET /api/imports/:id?include=items` Import items
+  - `PATCH /api/imports/:id` Update item status
+  - `GET /api/imports/:id/report` Export CSV report
+  - `GET /api/runs` Run list
+  - `POST /api/runs` Create run
+  - `GET /api/runs/:id` Run details
+  - `POST /api/runs/:id/events` Run events
+</details>
 
-1.  **Clone the repository**
-    ```bash
-    git clone https://github.com/HuLaxx/Shiftify.git
-    cd Shiftify
-    ```
+## Scripts
+```bash
+npm run dev
+npm run build
+npm run start
+npm run lint
+```
 
-2.  **Install dependencies**
-    ```bash
-    npm install
-    # or
-    pnpm install
-    ```
+## Contributing
+1. Fork the repo
+2. Create a branch: `git checkout -b feature/name`
+3. Commit changes: `git commit -m "Add feature"`
+4. Push: `git push origin feature/name`
+5. Open a PR
 
-3.  **Run the development server**
-    ```bash
-    npm run dev
-    ```
-
-4.  Open [http://localhost:3000](http://localhost:3000) with your browser.
-
-## 🤝 Contributing
-
-Contributions are welcome! We love the community.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 👤 Author
-
-**HuLaX**
-
-- 🌐 Website: [hulax.vercel.app](https://hulax.vercel.app)
-- 🐙 GitHub: [@HuLaxx](https://github.com/HuLaxx)
-- 💼 LinkedIn: [Rahul Khanke](https://www.linkedin.com/in/rahul-khanke-853717218/)
-
-## 📄 License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
----
-
-<div align="center">
-  <p>Made with ❤️ and 🎵 by <strong>HuLaX</strong></p>
-</div>
+## License
+MIT

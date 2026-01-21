@@ -111,7 +111,7 @@ export default function Home() {
             <div className="grid grid-cols-2 md:grid-cols-3 gap-8 p-6 rounded-2xl glass border-white/5">
               {stats.map((stat, i) => (
                 <div key={i} className="text-center space-y-1">
-                  <div className="text-3xl font-display font-bold text-white tracking-tight">{stat.value}</div>
+                  <div className="text-3xl font-display font-bold text-white tracking-tight" suppressHydrationWarning>{stat.value}</div>
                   <div className="text-xs font-medium text-muted-foreground uppercase tracking-wider">{stat.label}</div>
                 </div>
               ))}

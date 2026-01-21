@@ -44,12 +44,34 @@ export default function PageLayout({
 
             {/* Floating Capsule Header - Refined Design */}
             <header className="fixed top-6 left-0 right-0 z-50 px-6 pointer-events-none">
-                <div className="max-w-3xl mx-auto">
+                <div className="max-w-5xl mx-auto">
                     <nav className="pointer-events-auto flex items-center justify-between p-2 pl-4 pr-2 rounded-full bg-black/40 backdrop-blur-xl border border-white/10 shadow-2xl shadow-black/20 ring-1 ring-white/5 transition-all duration-300 hover:bg-black/50 hover:border-white/20 hover:ring-white/10">
-                        <AnimatedLogo size="sm" />
 
-                        {/* Desktop Navigation */}
-                        <div className="hidden md:flex items-center gap-1 mx-4">
+                        {/* Left Side: Logo & Credit */}
+                        <div className="flex items-center gap-4">
+                            <AnimatedLogo size="sm" />
+
+                            {/* Partition */}
+                            <div className="h-6 w-px bg-white/10" />
+
+                            {/* HuLaX Header Credit */}
+                            <a
+                                href="https://hulax.vercel.app"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="group flex flex-col items-start gap-0.5 leading-tight text-white/70"
+                            >
+                                <span className="hulax-credit-label text-[0.6rem] text-white/60 transition-all group-hover:text-white group-hover:scale-105 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]">
+                                    A website by
+                                </span>
+                                <span className="hulax-credit inline-block origin-left text-[0.85rem] text-white/80 transition-all group-hover:scale-110 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-500 group-hover:via-fuchsia-500 group-hover:to-amber-500 group-hover:font-black group-hover:drop-shadow-[0_0_14px_rgba(214,182,138,0.45)] sm:text-base">
+                                    HuLaX
+                                </span>
+                            </a>
+                        </div>
+
+                        {/* Center: Desktop Navigation */}
+                        <div className="hidden md:flex items-center gap-1">
                             {navLinks.map((link) => {
                                 const isActive = pathname === link.href;
                                 return (
@@ -70,32 +92,15 @@ export default function PageLayout({
                             })}
                         </div>
 
-                        <div className="flex items-center gap-4">
-                            {/* GitHub Link */}
-                            <Link
-                                href="https://github.com/HuLaxx/Shiftify"
-                                target="_blank"
-                                className="hidden sm:flex px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-blue-500 rounded-full hover:from-blue-500 hover:to-blue-400 transition-all shadow-lg shadow-blue-500/20 items-center gap-2 group"
-                            >
-                                <Github className="w-4 h-4 group-hover:rotate-12 transition-transform" />
-                                <span className="hidden lg:inline">Star</span>
-                            </Link>
-
-                            {/* HuLaX Header Credit */}
-                            <a
-                                href="https://hulax.vercel.app"
-                                target="_blank"
-                                rel="noreferrer"
-                                className="group flex flex-col items-center gap-0.5 text-center leading-tight text-white/70"
-                            >
-                                <span className="hulax-credit-label text-[0.6rem] text-white/60 transition-colors group-hover:text-white/70">
-                                    A website by
-                                </span>
-                                <span className="hulax-credit inline-block origin-left text-[0.85rem] text-white/80 transition-all group-hover:scale-110 group-hover:text-amber-500 group-hover:font-black group-hover:drop-shadow-[0_0_14px_rgba(214,182,138,0.45)] sm:text-base">
-                                    HuLaX
-                                </span>
-                            </a>
-                        </div>
+                        {/* Right: GitHub Link */}
+                        <Link
+                            href="https://github.com/HuLaxx/Shiftify"
+                            target="_blank"
+                            className="px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-blue-500 rounded-full hover:from-blue-500 hover:to-blue-400 transition-all shadow-lg shadow-blue-500/20 flex items-center gap-2 group"
+                        >
+                            <Github className="w-4 h-4 group-hover:rotate-12 transition-transform" />
+                            <span className="hidden sm:inline">Star</span>
+                        </Link>
                     </nav>
                 </div>
             </header>
@@ -107,9 +112,9 @@ export default function PageLayout({
                 </div>
             </main>
 
-            {/* Spacious Footer */}
-            <footer className="relative z-10 mt-auto border-t border-white/5 bg-black/40 backdrop-blur-2xl">
-                <div className="px-6 lg:px-12 py-20">
+            {/* Floating Footer */}
+            <footer className="relative z-10 m-4 md:m-8 mt-auto rounded-3xl overflow-hidden border border-white/5 bg-black/40 backdrop-blur-3xl shadow-2xl">
+                <div className="px-8 lg:px-12 py-16 md:py-24">
                     <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 lg:gap-24">
 
                         {/* Brand Column */}
@@ -152,10 +157,10 @@ export default function PageLayout({
                             rel="noreferrer"
                             className="group inline-flex items-baseline gap-1 text-white/70"
                         >
-                            <span className="hulax-credit-label text-white/60 transition-colors group-hover:text-white/70">
+                            <span className="hulax-credit-label text-white/60 transition-all group-hover:text-white group-hover:scale-105 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]">
                                 A website by
                             </span>
-                            <span className="hulax-credit inline-block origin-left text-base text-white/80 transition-all group-hover:scale-110 group-hover:text-amber-500 group-hover:font-black group-hover:drop-shadow-[0_0_14px_rgba(214,182,138,0.45)] sm:text-lg">
+                            <span className="hulax-credit inline-block origin-left text-base text-white/80 transition-all group-hover:scale-110 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-500 group-hover:via-fuchsia-500 group-hover:to-amber-500 group-hover:font-black group-hover:drop-shadow-[0_0_14px_rgba(214,182,138,0.45)] sm:text-lg">
                                 HuLaX
                             </span>
                         </a>

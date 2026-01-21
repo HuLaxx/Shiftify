@@ -16,7 +16,7 @@ export default function AnimatedLogo({ size = "md" }: { size?: "sm" | "md" | "lg
         <Link href="/" className="flex items-center gap-3 group px-2 py-1">
             {/* Animated gradient border container */}
             <div className="relative">
-                {/* Rotating gradient ring - Vibrant Mix */}
+                {/* Rotating gradient ring - Vibrant Mix (Blue -> Fuchsia -> Amber) */}
                 <div
                     className={`absolute -inset-0.5 rounded-xl opacity-75 blur-sm group-hover:opacity-100 transition-opacity`}
                     style={{
@@ -41,9 +41,9 @@ export default function AnimatedLogo({ size = "md" }: { size?: "sm" | "md" | "lg
                     {/* Icon */}
                     <Flame className={`relative z-10 ${s.icon} text-white fill-current drop-shadow-sm`} />
 
-                    {/* Hover flame animation inside - Warm Amber/Red */}
+                    {/* Hover flame animation inside - Warm Amber/Fuchsia */}
                     <div
-                        className="absolute inset-0 bg-gradient-to-t from-orange-500 via-red-500 to-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                        className="absolute inset-0 bg-gradient-to-t from-amber-500 via-fuchsia-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                         style={{
                             mixBlendMode: "overlay",
                             filter: "blur(4px)"
@@ -52,9 +52,9 @@ export default function AnimatedLogo({ size = "md" }: { size?: "sm" | "md" | "lg
                 </div>
             </div>
 
-            {/* Text with hover effect */}
+            {/* Text with hover effect - Blue -> Fuchsia -> Amber */}
             <span
-                className={`font-display font-bold ${s.text} tracking-tight text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-fuchsia-500 group-hover:via-orange-500 group-hover:to-blue-500 transition-all duration-300`}
+                className={`font-display font-bold ${s.text} tracking-tight text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-500 group-hover:via-fuchsia-500 group-hover:to-amber-500 transition-all duration-300`}
             >
                 Shiftify
             </span>

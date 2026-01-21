@@ -7,8 +7,9 @@ const allowedStatuses = new Set(["pending", "approved", "rejected", "invalid"]);
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } },
+  context: { params: Promise<{ id: string }> },
 ) {
+  const params = await context.params;
   const db = getDb();
   const importRow = db
     .prepare(
@@ -37,8 +38,9 @@ export async function GET(
 
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { id: string } },
+  context: { params: Promise<{ id: string }> },
 ) {
+  const params = await context.params;
   try {
     const body = (await req.json()) as {
       itemId?: string;

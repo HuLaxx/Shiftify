@@ -1,19 +1,56 @@
 "use client";
 
-import { HTMLAttributes } from "react";
+import { HTMLAttributes, ReactNode } from "react";
+import { motion } from "framer-motion";
+
+type CardVariant = "default" | "elevated" | "glow";
 
 interface CardProps extends HTMLAttributes<HTMLDivElement> {
+    children: ReactNode;
+    variant?: CardVariant;
     hoverEffect?: boolean;
 }
 
-export default function Card({ children, className = "", hoverEffect = true, ...props }: CardProps) {
+const variantStyles: Record<CardVariant, string> = {
+    default: `
+    glass-card
+  `,
+    elevated: `
+    glass-card
+    shadow-2xl shadow-black/50
+  `,
+    glow: `
+    glass-card
+    shadow-lg shadow-primary/10
+    hover:shadow-xl hover:shadow-primary/20
+  `,
+};
+
+export default function Card({
+    children,
+    variant = "default",
+    hoverEffect = true,
+    className = "",
+    ...props
+}: CardProps) {
     const hoverStyles = hoverEffect
-        ? "transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(22,19,15,0.16)]"
+        ? "transition-all duration-300 ease-out hover:-translate-y-1 hover:border-white/15"
         : "";
 
     return (
-        <div className={`glass-card rounded-3xl p-6 ${hoverStyles} ${className}`} {...props}>
+        <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className={`
+        rounded-2xl p-6
+        ${variantStyles[variant]}
+        ${hoverStyles}
+        ${className}
+      `}
+            {...props}
+        >
             {children}
-        </div>
+        </motion.div>
     );
 }

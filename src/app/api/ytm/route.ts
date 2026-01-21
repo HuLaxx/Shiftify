@@ -20,7 +20,7 @@ type Json = Record<string, unknown>;
 type PlaylistItem = {
   id: string;
   title: string;
-  subtitle?: string;
+  subtitle: string | null;
 };
 
 type TrackItem = {

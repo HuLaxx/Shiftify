@@ -4,8 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Flame } from "lucide-react";
 
-const links = [
-  { href: "/", label: "Home" },
+const navLinks = [
   { href: "/transfer", label: "Transfer" },
   { href: "/import", label: "Import" },
   { href: "/review", label: "Review" },
@@ -15,38 +14,52 @@ const links = [
 export default function TopNav() {
   const pathname = usePathname();
 
-  const isActive = (href: string) =>
-    href === "/"
-      ? pathname === "/"
-      : pathname === href || pathname.startsWith(`${href}/`);
-
   return (
-    <header className="flex flex-wrap items-center justify-between gap-4 py-4 mb-8">
+    <nav className="flex items-center justify-between mb-12">
+      {/* Logo */}
       <Link href="/" className="flex items-center gap-3 group">
-        <div className="flex h-9 w-9 items-center justify-center rounded-full border border-foreground/15 bg-white/80 shadow-sm shadow-black/10 transition-transform group-hover:-translate-y-0.5">
-          <Flame className="h-4 w-4 text-foreground" />
+        <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-orange-600 shadow-lg shadow-primary/30 group-hover:shadow-xl group-hover:shadow-primary/40 transition-shadow">
+          <Flame className="w-5 h-5 text-white fill-current" />
+          <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
         </div>
-        <div>
-          <p className="font-display text-lg font-semibold tracking-tight text-foreground">
-            Shiftify
-          </p>
-        </div>
+        <span className="font-display font-semibold text-xl text-foreground tracking-tight">
+          Shiftify
+        </span>
       </Link>
 
-      <nav className="flex flex-wrap items-center gap-1 rounded-full border border-foreground/10 bg-white/70 p-1 shadow-sm backdrop-blur-md">
-        {links.map((link) => {
-          const active = isActive(link.href);
+      {/* Navigation Links */}
+      <div className="hidden md:flex items-center gap-1 px-2 py-1.5 rounded-full glass">
+        {navLinks.map((link) => {
+          const isActive = pathname === link.href;
           return (
             <Link
               key={link.href}
               href={link.href}
-              className={`relative px-4 py-1.5 text-[11px] uppercase tracking-[0.2em] rounded-full transition-colors ${active ? "bg-foreground/10 text-foreground" : "text-muted-foreground hover:text-foreground"}`}
+              className={`
+                relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-200
+                ${isActive
+                  ? "text-foreground"
+                  : "text-muted-foreground hover:text-foreground"
+                }
+              `}
             >
-              {link.label}
+              {isActive && (
+                <span className="absolute inset-0 bg-white/10 rounded-full" />
+              )}
+              <span className="relative">{link.label}</span>
             </Link>
           );
         })}
-      </nav>
-    </header>
+      </div>
+
+      {/* GitHub Link */}
+      <Link
+        href="https://github.com/HuLaxx/Shiftify"
+        target="_blank"
+        className="px-4 py-2 text-sm font-medium text-muted-foreground border border-white/10 rounded-full hover:border-white/20 hover:text-foreground hover:bg-white/5 transition-all"
+      >
+        GitHub
+      </Link>
+    </nav>
   );
 }

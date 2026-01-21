@@ -1,5 +1,5 @@
 import { getDb } from "@/lib/db";
-import RunsClient from "./RunsClient";
+import RunsClient, { RunSummary } from "./RunsClient";
 
 export const runtime = "nodejs";
 
@@ -10,7 +10,7 @@ export default function RunsPage() {
       `SELECT id, kind, status, started_at, ended_at, total, success, failed
        FROM runs ORDER BY started_at DESC LIMIT 50`,
     )
-    .all();
+    .all() as RunSummary[];
 
   return <RunsClient initialRuns={runs} />;
 }

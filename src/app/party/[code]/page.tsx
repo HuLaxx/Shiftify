@@ -761,10 +761,11 @@ export default function PartyRoomPage() {
         const updated = {
             now_playing: {
                 ...nextNowPlaying,
+                item: nextNowPlaying?.item ?? null,
                 updatedAt: new Date().toISOString(),
             },
         };
-        setNowPlaying(updated.now_playing || createEmptyNowPlaying());
+        setNowPlaying((updated.now_playing as NowPlaying) || createEmptyNowPlaying());
         const { error } = await supabase.from("party_rooms").update(updated).eq("code", roomCode);
         if (error) {
             setRoomError(error.message);

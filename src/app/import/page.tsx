@@ -229,7 +229,7 @@ export default function ImportPage() {
             <ul className="space-y-3 text-sm text-muted-foreground">
               <li className="flex gap-3">
                 <FileText className="w-4 h-4 shrink-0 mt-0.5" />
-                <span><strong className="text-foreground">Lines:</strong> "Title - Artist" per line</span>
+                <span><strong className="text-foreground">Lines:</strong> &quot;Title - Artist&quot; per line</span>
               </li>
               <li className="flex gap-3">
                 <FileSpreadsheet className="w-4 h-4 shrink-0 mt-0.5" />

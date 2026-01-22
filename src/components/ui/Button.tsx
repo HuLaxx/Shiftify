@@ -18,29 +18,29 @@ interface ButtonProps {
 
 const variantStyles: Record<ButtonVariant, string> = {
     primary: `
-    bg-gradient-to-r from-primary to-orange-500
-    text-primary-foreground font-semibold
-    shadow-lg shadow-primary/25
-    hover:shadow-xl hover:shadow-primary/40
+    bg-gradient-to-r from-sky-600 via-blue-700 to-amber-600
+    text-white font-semibold
+    shadow-lg shadow-sky-600/25
+    hover:shadow-xl hover:shadow-sky-600/40
     hover:scale-[1.02] active:scale-[0.98]
   `,
     secondary: `
-    bg-gradient-to-r from-secondary/80 to-purple-600/80
-    text-secondary-foreground font-medium
-    shadow-lg shadow-secondary/20
-    hover:shadow-xl hover:shadow-secondary/30
+    bg-gradient-to-r from-fuchsia-700 via-pink-700 to-amber-600
+    text-white font-medium
+    shadow-lg shadow-fuchsia-600/25
+    hover:shadow-xl hover:shadow-fuchsia-600/40
     hover:scale-[1.02] active:scale-[0.98]
   `,
     ghost: `
-    bg-transparent text-foreground/70
-    hover:bg-white/5 hover:text-foreground
+    bg-transparent text-white/80
+    hover:bg-white/10 hover:text-white
     active:scale-[0.98]
   `,
     outline: `
-    bg-transparent border border-white/20
-    text-foreground/80 font-medium
-    hover:border-white/40 hover:bg-white/5
-    hover:text-foreground active:scale-[0.98]
+    bg-white/5 border border-white/30
+    text-white/85 font-medium
+    hover:border-white/60 hover:bg-white/15
+    hover:text-white active:scale-[0.98]
   `,
 };
 

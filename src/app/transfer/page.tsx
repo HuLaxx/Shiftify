@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
@@ -312,14 +313,26 @@ export default function TransferPage() {
   const inputClass = "w-full bg-white/5 border border-white/10 rounded-xl p-4 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary/50 focus:bg-white/[0.07] transition-all outline-none";
   const smallInputClass = "w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-foreground focus:border-primary/50 transition-all outline-none";
 
-  return (
-    <PageLayout
-      orbConfig={[
-        { color: "primary", position: "top-[-20%] right-[-10%]", size: "lg" },
-        { color: "secondary", position: "bottom-[10%] left-[-10%]", size: "md" },
-      ]}
-    >
-      <div className="max-w-4xl mx-auto">
+    return (
+        <PageLayout
+            orbConfig={[
+                { color: "primary", position: "top-[-20%] right-[-10%]", size: "lg" },
+                { color: "secondary", position: "bottom-[10%] left-[-10%]", size: "md" },
+            ]}
+        >
+      <div className="max-w-5xl mx-auto space-y-12">
+        <div className="text-center space-y-3">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-xs uppercase tracking-[0.3em] text-muted-foreground">
+            <Music2 className="w-4 h-4 text-primary" />
+            Transfer Engine
+          </div>
+          <h1 className="text-3xl md:text-4xl font-display font-bold text-white">
+            Transfer Control Center
+          </h1>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Connect your source, verify the destination, and move tracks with full control at every step.
+          </p>
+        </div>
         {renderStepIndicator()}
 
         <AnimatePresence mode="wait">
@@ -509,6 +522,21 @@ export default function TransferPage() {
                   ))}
                 </div>
 
+                {failedEntries.length > 0 && (
+                  <div className="space-y-3">
+                    <div className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Failed Tracks</div>
+                    <div className="grid gap-3">
+                      {failedEntries.map((entry, i) => (
+                        <div key={`${entry.track.title}-${i}`} className="p-3 rounded-xl bg-red-500/10 border border-red-500/20">
+                          <div className="text-sm text-white">{entry.track.title}</div>
+                          <div className="text-xs text-muted-foreground">{entry.track.artist}</div>
+                          <div className="text-xs text-red-300 mt-1">{entry.reason}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 {transferStatus === 'done' && (
                   <div className="flex justify-center pt-4">
                     <Button onClick={resetAll} variant="outline">Start New Transfer</Button>
@@ -519,6 +547,71 @@ export default function TransferPage() {
           )}
 
         </AnimatePresence>
+
+        <div id="tools" className="space-y-6">
+          <div className="text-center space-y-3">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-xs uppercase tracking-[0.3em] text-muted-foreground">
+              Transfer Tools
+            </div>
+            <h2 className="text-3xl font-display font-bold text-white">Keep every run organized</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Import lists, review matches, and track your run history without leaving the transfer suite.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            <Card className="p-6 space-y-4">
+              <div className="w-12 h-12 rounded-2xl bg-primary/15 text-primary flex items-center justify-center">
+                <Music2 className="w-6 h-6" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-white">Import from Text</h3>
+                <p className="text-sm text-muted-foreground">
+                  Paste playlists in lines, CSV, or JSON to prep quick transfers.
+                </p>
+              </div>
+              <Link href="/import">
+                <Button variant="outline" size="sm">
+                  Open Import <ArrowRight className="ml-2 w-4 h-4" />
+                </Button>
+              </Link>
+            </Card>
+
+            <Card className="p-6 space-y-4">
+              <div className="w-12 h-12 rounded-2xl bg-secondary/15 text-secondary-foreground flex items-center justify-center">
+                <CheckCircle2 className="w-6 h-6" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-white">Review Queue</h3>
+                <p className="text-sm text-muted-foreground">
+                  Approve, reject, and filter imports before they ship.
+                </p>
+              </div>
+              <Link href="/review">
+                <Button variant="outline" size="sm">
+                  Open Review <ArrowRight className="ml-2 w-4 h-4" />
+                </Button>
+              </Link>
+            </Card>
+
+            <Card className="p-6 space-y-4">
+              <div className="w-12 h-12 rounded-2xl bg-amber-500/15 text-amber-300 flex items-center justify-center">
+                <AlertCircle className="w-6 h-6" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-white">Run History</h3>
+                <p className="text-sm text-muted-foreground">
+                  Track completed runs, exports, and failures in one place.
+                </p>
+              </div>
+              <Link href="/runs">
+                <Button variant="outline" size="sm">
+                  Open Runs <ArrowRight className="ml-2 w-4 h-4" />
+                </Button>
+              </Link>
+            </Card>
+          </div>
+        </div>
       </div>
     </PageLayout>
   );

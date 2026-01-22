@@ -5,13 +5,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import AnimatedLogo from "@/components/AnimatedLogo";
 import GlowOrb from "@/components/ui/GlowOrb";
-import { Flame, Github, Twitter, Heart, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 
 const navLinks = [
     { href: "/transfer", label: "Transfer" },
-    { href: "/import", label: "Import" },
-    { href: "/review", label: "Review" },
-    { href: "/runs", label: "Runs" },
+    { href: "/party", label: "Party" },
+    { href: "/discovery", label: "Discovery" },
+    { href: "/library", label: "Library" },
 ];
 
 interface PageLayoutProps {
@@ -62,7 +62,7 @@ export default function PageLayout({
                                 className="group flex flex-col items-start gap-0.5 leading-tight text-white/70"
                             >
                                 <span className="hulax-credit-label text-[0.5rem] text-white/60 transition-colors group-hover:text-white">
-                                    A website by
+                                    A Project By
                                 </span>
                                 <span className="hulax-credit inline-block origin-left text-[0.7rem] text-white/80 transition-all group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:via-fuchsia-600 group-hover:to-amber-500 group-hover:font-black group-hover:drop-shadow-[0_0_14px_rgba(214,182,138,0.45)] sm:text-sm">
                                     HuLaX
@@ -73,7 +73,13 @@ export default function PageLayout({
                         {/* Center: Desktop Navigation */}
                         <div className="hidden md:flex items-center gap-1">
                             {navLinks.map((link) => {
-                                const isActive = pathname === link.href;
+                                const isTransferRoute =
+                                    link.href === "/transfer" &&
+                                    ["/transfer", "/import", "/review", "/runs"].includes(pathname);
+                                const isPartyRoute = link.href === "/party" && pathname.startsWith("/party");
+                                const isDiscoveryRoute = link.href === "/discovery" && pathname.startsWith("/discovery");
+                                const isLibraryRoute = link.href === "/library" && pathname.startsWith("/library");
+                                const isActive = isTransferRoute || isPartyRoute || isDiscoveryRoute || isLibraryRoute || pathname === link.href;
                                 return (
                                     <Link
                                         key={link.href}
@@ -104,10 +110,10 @@ export default function PageLayout({
                             <Link
                                 href="https://github.com/HuLaxx/Shiftify"
                                 target="_blank"
-                                className="px-4 py-2 text-sm font-medium text-muted-foreground bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:text-white hover:border-white/20 transition-all shadow-lg hover:shadow-white/5 flex items-center gap-2 group"
+                                className="px-4 py-2 text-sm font-medium text-muted-foreground bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:text-white hover:border-white/20 transition-all shadow-lg hover:shadow-white/5 flex items-center gap-2"
                             >
-                                <Github className="w-4 h-4 group-hover:rotate-12 transition-transform opacity-70 group-hover:opacity-100" />
-                                <span className="hidden sm:inline">Star</span>
+                                <Github className="w-4 h-4 opacity-80" />
+                                <span className="hidden sm:inline">GitHub</span>
                             </Link>
                         </div>
                     </nav>
@@ -138,10 +144,11 @@ export default function PageLayout({
                         <div>
                             <h3 className="font-display font-bold text-sm uppercase tracking-wider text-white mb-6">Pages</h3>
                             <ul className="space-y-4 text-sm text-muted-foreground">
-                                <li><Link href="/transfer" className="hover:text-fuchsia-400 transition-colors">Transfer Music</Link></li>
-                                <li><Link href="/import" className="hover:text-fuchsia-400 transition-colors">Import Playlist</Link></li>
-                                <li><Link href="/review" className="hover:text-fuchsia-400 transition-colors">Review Queue</Link></li>
-                                <li><Link href="/runs" className="hover:text-fuchsia-400 transition-colors">Run History</Link></li>
+                                <li><Link href="/" className="hover:text-fuchsia-400 transition-colors">Home</Link></li>
+                                <li><Link href="/transfer" className="hover:text-fuchsia-400 transition-colors">Transfer</Link></li>
+                                <li><Link href="/party" className="hover:text-fuchsia-400 transition-colors">Party</Link></li>
+                                <li><Link href="/discovery" className="hover:text-fuchsia-400 transition-colors">Discovery</Link></li>
+                                <li><Link href="/library" className="hover:text-fuchsia-400 transition-colors">Library</Link></li>
                             </ul>
                         </div>
 
@@ -167,7 +174,7 @@ export default function PageLayout({
                             className="group inline-flex items-baseline gap-1 text-white/70"
                         >
                             <span className="hulax-credit-label text-white/60 transition-all group-hover:text-white group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]">
-                                A website by
+                                A Project By
                             </span>
                             <span className="hulax-credit inline-block origin-left text-base text-white/80 transition-all group-hover:scale-110 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:via-fuchsia-600 group-hover:to-amber-500 group-hover:font-black group-hover:drop-shadow-[0_0_14px_rgba(214,182,138,0.45)] sm:text-lg">
                                 HuLaX

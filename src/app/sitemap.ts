@@ -17,22 +17,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 0.8,
         },
         {
-            url: `${baseUrl}/import`,
+            url: `${baseUrl}/party`,
+            lastModified: new Date(),
+            changeFrequency: "weekly",
+            priority: 0.6,
+        },
+        {
+            url: `${baseUrl}/discovery`,
             lastModified: new Date(),
             changeFrequency: "monthly",
-            priority: 0.8,
+            priority: 0.7,
         },
         {
-            url: `${baseUrl}/review`,
+            url: `${baseUrl}/library`,
             lastModified: new Date(),
-            changeFrequency: "always",
-            priority: 0.5,
-        },
-        {
-            url: `${baseUrl}/runs`,
-            lastModified: new Date(),
-            changeFrequency: "daily",
-            priority: 0.5,
+            changeFrequency: "weekly",
+            priority: 0.6,
         },
     ];
 }

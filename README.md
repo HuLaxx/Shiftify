@@ -19,7 +19,7 @@
 
 ## 🔥 What is Shiftify?
 
-**Shiftify** lets you export your YouTube Music library locally. No cloud storage, no API keys, no BS. Just your music data, your way.
+**Shiftify** lets you export your YouTube Music library in-browser. No cloud storage, no API keys, no BS. Just your music data, your way.
 
 <div align="center">
   <img src="https://media.giphy.com/media/3o7btNa0RUYa5E7iiQ/giphy.gif" width="300" alt="Music Vibe"/>
@@ -40,7 +40,7 @@ Export liked songs, playlists & history with one click
 <td width="33%" align="center">
 
 ### 🔒 Privacy First
-Everything runs locally. Your cookies never leave your machine
+Everything runs in your browser. Your cookies never leave your session
 
 </td>
 <td width="33%" align="center">
@@ -61,11 +61,11 @@ Glassmorphism, neon gradients, buttery animations
 git clone https://github.com/HuLaxx/Shiftify.git
 cd Shiftify && npm install
 
-# Run
+# Local dev
 npm run dev
 ```
 
-Open **[localhost:3000](http://localhost:3000)** and vibe 🎧
+Open **[localhost:3000](http://localhost:3000)** for local dev, or deploy on Vercel for production.
 
 ---
 

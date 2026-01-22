@@ -609,16 +609,17 @@ export default function PartyRoomPage() {
             .on("broadcast", { event: "dj_request" }, (payload) => {
                 if (!isHostRef.current) return;
                 const data = payload.payload as { userId?: string; displayName?: string };
-                if (!data?.userId) return;
+                const requestUserId = data?.userId;
+                if (!requestUserId) return;
                 const currentRoom = roomRef.current;
-                if (currentRoom?.host_id === data.userId) return;
-                if (currentRoom?.co_dj_ids?.includes(data.userId)) return;
+                if (currentRoom?.host_id === requestUserId) return;
+                if (currentRoom?.co_dj_ids?.includes(requestUserId)) return;
                 const name = (data.displayName ?? "").trim() || "Guest";
                 setDjRequests((prev) => {
-                    if (prev.some((request) => request.userId === data.userId)) return prev;
-                    return [...prev, { userId: data.userId, displayName: name }];
+                    if (prev.some((request) => request.userId === requestUserId)) return prev;
+                    return [...prev, { userId: requestUserId, displayName: name }];
                 });
-                setCoDjNames((prev) => ({ ...prev, [data.userId]: name }));
+                setCoDjNames((prev) => ({ ...prev, [requestUserId]: name }));
             })
             .subscribe();
 

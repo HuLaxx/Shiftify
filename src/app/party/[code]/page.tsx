@@ -31,6 +31,7 @@ import {
     PartyMessage,
     PartyRoom,
     QueueItem,
+    NowPlaying,
     computePlaybackPosition,
     createEmptyNowPlaying,
     generateClientId,

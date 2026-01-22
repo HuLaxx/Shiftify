@@ -827,7 +827,9 @@ export default function PartyRoomPage() {
         if (!nowPlaying.item) return;
         if (nowPlaying.isPlaying) {
             const currentSeconds = playerRef.current?.getCurrentTime?.();
-            const currentMs = Number.isFinite(currentSeconds) ? currentSeconds * 1000 : nowPositionMs;
+            const currentMs = typeof currentSeconds === "number" && Number.isFinite(currentSeconds)
+                ? currentSeconds * 1000
+                : nowPositionMs;
             await updateNowPlaying({
                 ...nowPlaying,
                 positionMs: currentMs,

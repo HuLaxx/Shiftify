@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { ChangeEvent, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { UploadCloud, FileText, FileJson, FileSpreadsheet, AlertTriangle, Check } from "lucide-react";
 import Button from "@/components/ui/Button";
@@ -51,6 +51,7 @@ export default function ImportPage() {
   const [status, setStatus] = useState<string | null>(null);
   const [counts, setCounts] = useState<ImportResponse["counts"] | null>(null);
   const [loading, setLoading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const sampleByFormat = useMemo(
     () => ({
@@ -78,6 +79,32 @@ export default function ImportPage() {
     setContent(sampleByFormat[next]);
   };
 
+  const detectFormatFromFile = (fileName: string): Format => {
+    const lower = fileName.toLowerCase();
+    if (lower.endsWith(".csv")) return "csv";
+    if (lower.endsWith(".json")) return "json";
+    return "lines";
+  };
+
+  const handleFileSelected = async (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    try {
+      const text = await file.text();
+      const nextFormat = detectFormatFromFile(file.name);
+      setFormat(nextFormat);
+      setContent(text);
+      setCounts(null);
+      setStatus(`Loaded ${file.name}`);
+      const nextName = file.name.replace(/\.[^/.]+$/, "").trim();
+      if (nextName) setName(nextName);
+    } catch {
+      setStatus("Failed to read file.");
+    } finally {
+      event.target.value = "";
+    }
+  };
+
   const handleImport = async () => {
     setLoading(true);
     setStatus(null);
@@ -85,6 +112,7 @@ export default function ImportPage() {
     try {
       const res = await fetch("/api/imports", {
         method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, format, content }),
       });
       const data = (await res.json()) as ImportResponse;
@@ -158,6 +186,26 @@ export default function ImportPage() {
                 </div>
               </div>
 
+              <div className="flex flex-wrap items-center gap-2">
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept=".csv,.json,.txt"
+                  className="hidden"
+                  onChange={handleFileSelected}
+                />
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => fileInputRef.current?.click()}
+                >
+                  Import From File
+                </Button>
+                <span className="text-[11px] text-muted-foreground">
+                  CSV, JSON, or TXT lines supported.
+                </span>
+              </div>
+
               <textarea
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
@@ -214,9 +262,9 @@ export default function ImportPage() {
                       <div className="font-medium text-sm truncate">{imp.name}</div>
                       <span className="text-[10px] bg-white/10 px-2 py-0.5 rounded text-muted-foreground">{imp.item_count}</span>
                     </div>
-                    <div className="text-xs text-muted-foreground mb-2">{imp.source_type.toUpperCase()} — {new Date(imp.created_at).toLocaleDateString()}</div>
+                    <div className="text-xs text-muted-foreground mb-2">{imp.source_type.toUpperCase()} - {new Date(imp.created_at).toLocaleDateString()}</div>
                     <Link href={`/review?import=${imp.id}`} className="text-[10px] text-primary hover:text-primary/80 transition-colors">
-                      Review →
+                      Review -&gt;
                     </Link>
                   </div>
                 ))

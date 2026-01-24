@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Inter, Space_Grotesk, Merienda } from "next/font/google";
 import "./globals.css";
 
@@ -72,6 +73,32 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${spaceGrotesk.variable} ${merienda.variable} font-sans antialiased`} suppressHydrationWarning>
+        <Script
+          id="strip-extension-attrs"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `(function () {
+  try {
+    var attr = "bis_skin_checked";
+    var remove = function () {
+      var nodes = document.querySelectorAll("[" + attr + "]");
+      for (var i = 0; i < nodes.length; i++) {
+        nodes[i].removeAttribute(attr);
+      }
+    };
+    remove();
+    var observer = new MutationObserver(function () {
+      remove();
+    });
+    observer.observe(document.documentElement, {
+      attributes: true,
+      subtree: true,
+      attributeFilter: [attr],
+    });
+  } catch (e) {}
+})();`,
+          }}
+        />
         {children}
       </body>
     </html>

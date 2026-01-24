@@ -26,10 +26,12 @@ export async function GET(
     return NextResponse.json({ import: importRow });
   }
 
+  const orderParam = req.nextUrl.searchParams.get("order");
+  const orderClause = orderParam === "original" ? "rowid ASC" : "score DESC";
   const items = db
     .prepare(
       `SELECT id, title, artist, album, duration_ms, score, status
-       FROM import_items WHERE import_id = ? ORDER BY score DESC`,
+       FROM import_items WHERE import_id = ? ORDER BY ${orderClause}`,
     )
     .all(params.id);
 

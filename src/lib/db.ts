@@ -1,9 +1,35 @@
 import fs from "fs";
+import os from "os";
 import path from "path";
 import Database from "better-sqlite3";
 
-const DATA_DIR = path.join(process.cwd(), "data");
-const DB_FILE = path.join(DATA_DIR, "shiftify.db");
+const DEFAULT_DATA_DIR = path.join(process.cwd(), "data");
+const TMP_DATA_DIR = path.join(os.tmpdir(), "shiftify");
+
+let resolvedDataDir: string | null = null;
+
+const resolveDataDir = () => {
+  if (resolvedDataDir) return resolvedDataDir;
+  const candidates = [
+    process.env.SHIFTIFY_DATA_DIR?.trim(),
+    DEFAULT_DATA_DIR,
+    TMP_DATA_DIR,
+  ].filter(Boolean) as string[];
+  let lastError: unknown = null;
+  for (const dir of candidates) {
+    try {
+      fs.mkdirSync(dir, { recursive: true });
+      resolvedDataDir = dir;
+      return dir;
+    } catch (error) {
+      lastError = error;
+    }
+  }
+  if (lastError instanceof Error) throw lastError;
+  throw new Error("Failed to create data directory.");
+};
+
+const getDbFile = () => path.join(resolveDataDir(), "shiftify.db");
 
 const SCHEMA = `
 CREATE TABLE IF NOT EXISTS imports (
@@ -66,15 +92,13 @@ CREATE INDEX IF NOT EXISTS idx_run_events_run_id
 let db: Database.Database | null = null;
 
 const ensureDb = () => {
-  if (!fs.existsSync(DATA_DIR)) {
-    fs.mkdirSync(DATA_DIR, { recursive: true });
-  }
+  resolveDataDir();
 };
 
 export const getDb = () => {
   if (!db) {
     ensureDb();
-    db = new Database(DB_FILE);
+    db = new Database(getDbFile());
     db.pragma("journal_mode = WAL");
     db.exec(SCHEMA);
   }

@@ -63,6 +63,7 @@ const parseLines = (content: string): RawTrack[] =>
 const parseCsvContent = (content: string): RawTrack[] => {
   const records = parseCsv(content, {
     columns: true,
+    bom: true,
     skip_empty_lines: true,
     trim: true,
     relax_column_count: true,

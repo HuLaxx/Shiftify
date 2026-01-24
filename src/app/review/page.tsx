@@ -1,7 +1,7 @@
 "use client";
 
 import { Suspense, useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { CheckCircle2, Filter, RefreshCw, XCircle, Check } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
@@ -30,6 +30,7 @@ type StatusTab = (typeof statusTabs)[number];
 
 function ReviewContent() {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const [imports, setImports] = useState<ImportSummary[]>([]);
   const [selectedImport, setSelectedImport] = useState<string | null>(null);
   const [items, setItems] = useState<ImportItem[]>([]);
@@ -72,6 +73,11 @@ function ReviewContent() {
     if (statusFilter === "all") return items;
     return items.filter((item) => item.status === statusFilter);
   }, [items, statusFilter]);
+
+  const approvedCount = useMemo(
+    () => items.filter((item) => item.status === "approved").length,
+    [items],
+  );
 
   const counts = useMemo(() => {
     const tally: Record<string, number> = { all: items.length };
@@ -130,6 +136,13 @@ function ReviewContent() {
             <div className="flex flex-wrap items-center justify-between gap-4">
               <h1 className="text-2xl font-display font-semibold">Review Queue</h1>
               <div className="flex gap-2">
+                <Button
+                  size="sm"
+                  onClick={() => selectedImport && router.push(`/transfer?import=${selectedImport}`)}
+                  disabled={!selectedImport || approvedCount === 0}
+                >
+                  Transfer Approved
+                </Button>
                 <Button size="sm" onClick={() => updateStatus(filteredItems.map(i => i.id), "approved")} disabled={filteredItems.length === 0}>
                   Approve All
                 </Button>
@@ -183,7 +196,7 @@ function ReviewContent() {
                         {Math.round(item.score)}%
                       </div>
                     </div>
-                    <div className="text-xs text-muted-foreground truncate">{item.artist} — {item.album || "Unknown Album"}</div>
+                    <div className="text-xs text-muted-foreground truncate">{item.artist} - {item.album || "Unknown Album"}</div>
                   </div>
 
                   <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">

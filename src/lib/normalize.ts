@@ -26,7 +26,7 @@ const clean = (value: string) =>
 export const normalizeText = (value: string) =>
   clean(value)
     .toLowerCase()
-    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/[^\p{L}\p{N}]+/gu, " ")
     .trim();
 
 const parseDurationMs = (value: RawTrack["duration"]) => {

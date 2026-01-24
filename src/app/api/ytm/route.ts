@@ -24,8 +24,8 @@ type PlaylistItem = {
   id: string;
   title: string;
   subtitle: string | null;
-  editId?: string | null;
-  browseId?: string | null;
+  editId: string | null;
+  browseId: string;
 };
 
 type TrackItem = {
@@ -372,9 +372,9 @@ const VIDEO_ID_REGEX = /^[A-Za-z0-9_-]{11}$/;
 const isValidVideoId = (value: string | null | undefined) =>
   typeof value === "string" && VIDEO_ID_REGEX.test(value);
 
-const firstValidVideoId = (...candidates: Array<string | null | undefined>) => {
+const firstValidVideoId = (...candidates: Array<string | null | undefined>): string | null => {
   for (const candidate of candidates) {
-    if (isValidVideoId(candidate)) return candidate;
+    if (isValidVideoId(candidate)) return candidate as string;
   }
   return null;
 };

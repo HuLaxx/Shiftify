@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import {
@@ -124,7 +124,7 @@ const isValidVideoId = (value: string | null | undefined) =>
 
 // --- Main Component ---
 
-export default function TransferPage() {
+function TransferPageContent() {
   const [step, setStep] = useState(1);
   const searchParams = useSearchParams();
 
@@ -221,8 +221,8 @@ export default function TransferPage() {
   );
   const sameCookieJar = Boolean(
     normalizedSourceCookies &&
-      normalizedDestCookies &&
-      normalizedSourceCookies === normalizedDestCookies,
+    normalizedDestCookies &&
+    normalizedSourceCookies === normalizedDestCookies,
   );
   const sameAccount = sameCookieJar && sourceAuthUser.trim() === destAuthUser.trim();
 
@@ -690,60 +690,60 @@ export default function TransferPage() {
 
       addClearLog(`Clearing ${playlistTracks.length} tracks...`);
 
-        for (let i = 0; i < playlistTracks.length; i++) {
-          const track = playlistTracks[i];
-          setClearProgress((p) => ({ ...p, current: i + 1 }));
+      for (let i = 0; i < playlistTracks.length; i++) {
+        const track = playlistTracks[i];
+        setClearProgress((p) => ({ ...p, current: i + 1 }));
 
-          if (isLiked) {
-            let videoId = track.videoId ?? null;
+        if (isLiked) {
+          let videoId = track.videoId ?? null;
+          if (!videoId) {
+            if (clearUseSearchFallback) {
+              const searchResult = await findVideoIdForTrack(
+                { title: track.title, artist: track.artist },
+                resolvedAuthUser,
+              );
+              if (searchResult.authUser && searchResult.authUser !== resolvedAuthUser) {
+                resolvedAuthUser = searchResult.authUser;
+                setDestAuthUser(searchResult.authUser);
+              }
+              videoId = searchResult.videoId ?? null;
+              if (videoId) {
+                addClearLog(`Resolved video ID for "${track.title}".`);
+              }
+            }
             if (!videoId) {
-              if (clearUseSearchFallback) {
-                const searchResult = await findVideoIdForTrack(
-                  { title: track.title, artist: track.artist },
-                  resolvedAuthUser,
-                );
-                if (searchResult.authUser && searchResult.authUser !== resolvedAuthUser) {
-                  resolvedAuthUser = searchResult.authUser;
-                  setDestAuthUser(searchResult.authUser);
-                }
-                videoId = searchResult.videoId ?? null;
-                if (videoId) {
-                  addClearLog(`Resolved video ID for "${track.title}".`);
-                }
+              setClearProgress((p) => ({ ...p, failed: p.failed + 1 }));
+              addClearLog(`Missing video ID for "${track.title}".`);
+              await sleep(BASE_DELAY_MS);
+              continue;
+            }
+          }
+          if (!isValidVideoId(videoId)) {
+            if (clearUseSearchFallback) {
+              const searchResult = await findVideoIdForTrack(
+                { title: track.title, artist: track.artist },
+                resolvedAuthUser,
+              );
+              if (searchResult.authUser && searchResult.authUser !== resolvedAuthUser) {
+                resolvedAuthUser = searchResult.authUser;
+                setDestAuthUser(searchResult.authUser);
               }
-              if (!videoId) {
-                setClearProgress((p) => ({ ...p, failed: p.failed + 1 }));
-                addClearLog(`Missing video ID for "${track.title}".`);
-                await sleep(BASE_DELAY_MS);
-                continue;
+              videoId = searchResult.videoId ?? null;
+              if (videoId) {
+                addClearLog(`Resolved video ID for "${track.title}".`);
               }
             }
-            if (!isValidVideoId(videoId)) {
-              if (clearUseSearchFallback) {
-                const searchResult = await findVideoIdForTrack(
-                  { title: track.title, artist: track.artist },
-                  resolvedAuthUser,
-                );
-                if (searchResult.authUser && searchResult.authUser !== resolvedAuthUser) {
-                  resolvedAuthUser = searchResult.authUser;
-                  setDestAuthUser(searchResult.authUser);
-                }
-                videoId = searchResult.videoId ?? null;
-                if (videoId) {
-                  addClearLog(`Resolved video ID for "${track.title}".`);
-                }
-              }
-              if (!videoId || !isValidVideoId(videoId)) {
-                setClearProgress((p) => ({ ...p, failed: p.failed + 1 }));
-                addClearLog(`Invalid video ID for "${track.title}".`);
-                await sleep(BASE_DELAY_MS);
-                continue;
-              }
+            if (!videoId || !isValidVideoId(videoId)) {
+              setClearProgress((p) => ({ ...p, failed: p.failed + 1 }));
+              addClearLog(`Invalid video ID for "${track.title}".`);
+              await sleep(BASE_DELAY_MS);
+              continue;
             }
-            if (track.setVideoId) {
-              const removeRes = await fetch("/api/ytm", {
-                method: "POST",
-                body: JSON.stringify({
+          }
+          if (track.setVideoId) {
+            const removeRes = await fetch("/api/ytm", {
+              method: "POST",
+              body: JSON.stringify({
                 action: "remove_from_playlist",
                 cookies: destCookies,
                 authUser: resolvedAuthUser,
@@ -945,13 +945,13 @@ export default function TransferPage() {
   const inputClass = "w-full bg-white/5 border border-white/10 rounded-xl p-4 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary/50 focus:bg-white/[0.07] transition-all outline-none";
   const smallInputClass = "w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-foreground focus:border-primary/50 transition-all outline-none";
 
-    return (
-        <PageLayout
-            orbConfig={[
-                { color: "primary", position: "top-[-20%] right-[-10%]", size: "lg" },
-                { color: "secondary", position: "bottom-[10%] left-[-10%]", size: "md" },
-            ]}
-        >
+  return (
+    <PageLayout
+      orbConfig={[
+        { color: "primary", position: "top-[-20%] right-[-10%]", size: "lg" },
+        { color: "secondary", position: "bottom-[10%] left-[-10%]", size: "md" },
+      ]}
+    >
       <div className="max-w-5xl mx-auto space-y-12">
         <div className="text-center space-y-3">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-xs uppercase tracking-[0.3em] text-muted-foreground">
@@ -989,26 +989,26 @@ export default function TransferPage() {
                     />
                   </div>
                   <div className="flex items-end gap-4">
-                  <div className="flex-1">
-                    <label className="block text-xs font-medium text-muted-foreground mb-2">Auth User ID</label>
-                    <input type="text" value={sourceAuthUser} onChange={(e) => setSourceAuthUser(e.target.value)} className={smallInputClass} />
+                    <div className="flex-1">
+                      <label className="block text-xs font-medium text-muted-foreground mb-2">Auth User ID</label>
+                      <input type="text" value={sourceAuthUser} onChange={(e) => setSourceAuthUser(e.target.value)} className={smallInputClass} />
+                    </div>
+                    <div className="flex items-center gap-2 pb-1">
+                      <input
+                        id="source-strict-auth"
+                        type="checkbox"
+                        checked={sourceStrictAuthUser}
+                        onChange={(e) => setSourceStrictAuthUser(e.target.checked)}
+                        className="rounded bg-white/10 border-white/20 text-primary focus:ring-primary/30"
+                      />
+                      <label htmlFor="source-strict-auth" className="text-[11px] text-muted-foreground">
+                        Lock Auth User (no auto-switch)
+                      </label>
+                    </div>
+                    <Button onClick={fetchPlaylists} isLoading={sourceLoading} disabled={!sourceCookies}>
+                      Fetch Playlists <ArrowRight className="ml-2 w-4 h-4" />
+                    </Button>
                   </div>
-                  <div className="flex items-center gap-2 pb-1">
-                    <input
-                      id="source-strict-auth"
-                      type="checkbox"
-                      checked={sourceStrictAuthUser}
-                      onChange={(e) => setSourceStrictAuthUser(e.target.checked)}
-                      className="rounded bg-white/10 border-white/20 text-primary focus:ring-primary/30"
-                    />
-                    <label htmlFor="source-strict-auth" className="text-[11px] text-muted-foreground">
-                      Lock Auth User (no auto-switch)
-                    </label>
-                  </div>
-                  <Button onClick={fetchPlaylists} isLoading={sourceLoading} disabled={!sourceCookies}>
-                    Fetch Playlists <ArrowRight className="ml-2 w-4 h-4" />
-                  </Button>
-                </div>
                   {sourceError && (
                     <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-sm flex items-center gap-2">
                       <AlertCircle className="w-4 h-4" /> {sourceError}
@@ -1238,20 +1238,20 @@ export default function TransferPage() {
                           ))}
                         </div>
                       </div>
-                      )}
-                      {isLikedPlaylist(destPlaylistId, selectedDestPlaylist) && (
-                        <label className="flex items-center gap-3 text-xs text-muted-foreground pt-2">
-                          <input
-                            type="checkbox"
-                            checked={clearUseSearchFallback}
-                            onChange={(e) => setClearUseSearchFallback(e.target.checked)}
-                            className="rounded bg-white/10 border-white/20 text-primary focus:ring-primary/30"
-                          />
-                          Search missing IDs when clearing Liked Music (may remove matches from YouTube Liked Videos).
-                        </label>
-                      )}
-                    </div>
-                  )}
+                    )}
+                    {isLikedPlaylist(destPlaylistId, selectedDestPlaylist) && (
+                      <label className="flex items-center gap-3 text-xs text-muted-foreground pt-2">
+                        <input
+                          type="checkbox"
+                          checked={clearUseSearchFallback}
+                          onChange={(e) => setClearUseSearchFallback(e.target.checked)}
+                          className="rounded bg-white/10 border-white/20 text-primary focus:ring-primary/30"
+                        />
+                        Search missing IDs when clearing Liked Music (may remove matches from YouTube Liked Videos).
+                      </label>
+                    )}
+                  </div>
+                )}
               </Card>
             </motion.div>
           )}
@@ -1411,5 +1411,19 @@ export default function TransferPage() {
         </div>
       </div>
     </PageLayout>
+  );
+}
+
+export default function TransferPage() {
+  return (
+    <Suspense fallback={
+      <PageLayout>
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <div className="text-muted-foreground">Loading...</div>
+        </div>
+      </PageLayout>
+    }>
+      <TransferPageContent />
+    </Suspense>
   );
 }

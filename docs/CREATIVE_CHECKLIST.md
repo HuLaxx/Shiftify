@@ -12,7 +12,8 @@
 - [x] Explain that imported tracks are processed by a server API and stored in server-side SQLite.
 - [x] Explain that pasted YouTube Music session cookies reach Shiftify's server and should only be used in a trusted environment.
 - [x] Avoid implying completed Spotify/Apple Music migrations, browser-only privacy, audited security or universally working hosted services.
-- [ ] Verify README local links, SVG structure and both assets after checklist publication.
+- [x] Correct Shiftify homepage/SEO copy and add a visible session-cookie warning to the actual transfer UI.
+- [x] Verify all 13 distinct local README links/image paths exist and both SVG assets pass structure, unique-ID and accessibility-metadata checks.
 
 ## Security and product-readiness work still open
 
@@ -28,8 +29,8 @@
 
 ## Portfolio integration
 
-- [ ] Add a curated fourth portfolio project and evidence-based Shiftify case study.
-- [ ] Reuse the original illustration in the case study without presenting it as a screenshot.
+- [x] Add a curated fourth portfolio project and evidence-based Shiftify case study (in the my-portfolio repository).
+- [x] Reuse original music-passport artwork in the portfolio case study, labeled conceptual rather than a screenshot.
 - [ ] Confirm live portfolio deployment after commit.
 
 **Pass definition:** visuals and editorial changes are a completed GitHub presentation pass, **not** a security certification or proven successful account migration.

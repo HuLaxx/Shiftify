@@ -59,8 +59,8 @@ const listItem = {
 const features = [
   {
     icon: Shield,
-    title: "Privacy First",
-    description: "Cookie-based authentication. Your data never leaves your browser.",
+    title: "Know the Data Flow",
+    description: "Account transfers use a server API. Know when session credentials and music data cross a trust boundary.",
     gradient: "from-blue-500/20 to-fuchsia-500/5",
   },
   {
@@ -84,19 +84,19 @@ const heroSlides = [
     badgeLabel: "Transfer Engine",
     heroTitle: "Move your music",
     heroAccent: "without limits",
-    heroDescription: "Transfer playlists and liked songs with full local control. Export clean packs and keep your data in your browser.",
+    heroDescription: "Prepare and review music libraries, then explore YouTube Music transfers. Authenticated account actions use a server API and require a trusted deployment.",
     heroGradient: "from-blue-400 via-fuchsia-400 to-amber-400",
     primaryCta: { label: "Start Transfer", href: "/transfer" },
     secondaryCta: { label: "Transfer Tools", href: "/transfer#tools" },
     stats: [
       { value: "10K+", label: "Tracks Moved" },
       { value: "0", label: "API Keys" },
-      { value: "100%", label: "Local Runs" },
+      { value: "CSV", label: "Reports" },
     ],
     icon: Download,
     eyebrow: "Transfer Engine",
     title: "Move libraries with full control",
-    description: "Track every song, export clean packs, and keep ownership in your browser.",
+    description: "Prepare tracklists, review their metadata and understand where your information goes.",
     bullets: [
       "Live run console with retry",
       "CSV/JSON/M3U export packs",

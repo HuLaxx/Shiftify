@@ -975,7 +975,10 @@ function TransferPageContent() {
               <Card variant="elevated" className="p-8 space-y-6">
                 <div>
                   <h2 className="text-2xl font-display font-semibold mb-2">Connect Source</h2>
-                  <p className="text-muted-foreground">Paste cookies from the YouTube Music account you want to transfer FROM.</p>
+                  <p className="text-muted-foreground">Advanced YouTube Music account connection. Only proceed on a locally run or fully trusted deployment.</p>
+                  <p role="alert" className="mt-3 rounded-xl border border-amber-500/30 bg-amber-500/10 p-3 text-xs leading-relaxed text-amber-200">
+                    Security: session cookies are sensitive login credentials and are sent to this app&apos;s server to perform account actions. Do not enter cookies into an unfamiliar hosted service.
+                  </p>
                 </div>
 
                 <div className="space-y-4">
@@ -1071,7 +1074,7 @@ function TransferPageContent() {
                 <div className="flex items-center justify-between">
                   <div>
                     <h2 className="text-2xl font-display font-semibold mb-2">Destination</h2>
-                    <p className="text-muted-foreground">Paste cookies for the TARGET account.</p>
+                    <p className="text-muted-foreground">Only enter target-account session cookies on a deployment whose server you trust. These credentials are submitted to the app server.</p>
                   </div>
                   {sourceMode === "ytm" && (
                     <Button variant="ghost" size="sm" onClick={() => setStep(2)}>

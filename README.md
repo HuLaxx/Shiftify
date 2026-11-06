@@ -8,7 +8,7 @@
 
 A music-library preparation and account-transfer experiment covering **track imports, normalization, review, CSV reporting and YouTube Music account operations**.
 
-[**Explore project website**](https://shiftify.hulax.uk/) · [**Read the liner notes**](#the-liner-notes) · [**Start locally**](#studio-setup) · [**Engineering notes**](#behind-the-sleeve)
+[**Explore project website**](https://shiftify.hulax.uk/) · [**Portfolio case study**](https://portfolio.hulax.uk/case/shiftify) · [**Read the liner notes**](#the-liner-notes) · [**Start locally**](#studio-setup) · [**Engineering notes**](#behind-the-sleeve)
 
 <sub>Original animated artwork, not actual library data. No audio is embedded.</sub>
 

@@ -17,24 +17,22 @@ const merienda = Merienda({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://shiftify.vercel.app"), // Replace with actual domain when deployed
+  metadataBase: new URL("https://shiftify.hulax.uk"), // Replace with actual domain when deployed
   title: {
-    default: "Shiftify - The Ultimate Music Transfer Tool",
+    default: "Shiftify — Your Music Passport",
     template: "%s | Shiftify",
   },
-  description: "Seamlessly transfer your YouTube Music library to other platforms locally. Privacy-first, cookie-based, and completely free. A project by HuLaX.",
+  description: "Music-library import, review and reporting tools, with an experimental YouTube Music account-transfer adapter. Credential-based features require a trusted server.",
   keywords: [
     "youtube music transfer",
     "export youtube music",
     "playlist converter",
-    "spotify transfer",
-    "apple music import",
     "local music tool",
-    "privacy focused",
+    "music data portability",
     "hulax",
     "open source music tool"
   ],
-  authors: [{ name: "HuLaX", url: "https://hulax.vercel.app" }],
+  authors: [{ name: "HuLaX", url: "https://portfolio.hulax.uk/" }],
   creator: "HuLaX",
   publisher: "HuLaX",
   robots: {
@@ -44,13 +42,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://shiftify.vercel.app",
-    title: "Shiftify - Transfer Your Music Library",
-    description: "The privacy-first tool to move your playlists between services. No API keys required.",
+    url: "https://shiftify.hulax.uk",
+    title: "Shiftify — Your Music Passport",
+    description: "Import and review tracklists with an experimental YouTube Music account-transfer workflow. Authenticated actions require a trusted deployment.",
     siteName: "Shiftify",
     images: [
       {
-        url: "/og-image.png", // We should create this or use specific image
+        url: "/assets/hero-banner.png", // Existing repository asset, not a generated placeholder
         width: 1200,
         height: 630,
         alt: "Shiftify - Music Transfer Tool",
@@ -59,9 +57,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Shiftify - Transfer Your Music",
-    description: "Move your YouTube Music library locally. Free & Open Source.",
-    creator: "@HuLaxx", // Placeholder
+    title: "Shiftify — Your Music Passport",
+    description: "Explore portable music libraries, track reviews and account-transfer workflows.",
   },
 };
 
